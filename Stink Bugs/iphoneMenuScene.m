@@ -29,7 +29,7 @@
 	if( ![super init])
 		return nil;
     
-    printf("intro scene loading\n");
+    printf("menu scene loading\n");
     
 	//printf("intro init\n");
     
@@ -70,26 +70,166 @@
     if (IS_IPHONE5)
         iphoneAddY = 44.0;
 
-    float menuStartY = 240.0+iphoneAddY*2;
+    float menuStartY = 390.0+iphoneAddY*2;
     float sepY = 38.5;
     
-    /*
-    CCMenuItemSprite *itemA = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"main_menu_cellbg.pvr.gz"]
-                                                      selectedSprite:[CCSprite spriteWithFile:@"main_menu_cellbg.pvr.gz"]
+    CCSprite *selected_01 = [CCSprite spriteWithFile:@"button_01.pvr.gz"];
+    selected_01.color = ccGRAY;
+    
+    CCMenuItemSprite *item_01 = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"button_01.pvr.gz"]
+                                                      selectedSprite:selected_01
                                                               target:self
-                                                            selector:@selector(aAction:)];
+                                                            selector:@selector(buttonAction:)];
     
-    CCMenu  *menuA = [CCMenu menuWithItems:itemA, nil];
-    [menuA setPosition:ccp(size.width*.5,menuStartY - sepY*0)];
-    [self addChild:menuA z:2];
+    CCMenu  *menu_01 = [CCMenu menuWithItems:item_01, nil];
+    [menu_01 setPosition:ccp(size.width*.5,menuStartY - sepY*0)];
+    item_01.tag = 1;
+    [self addChild:menu_01 z:2];
+
+    CCSprite *selected_02 = [CCSprite spriteWithFile:@"button_02.pvr.gz"];
+    selected_02.color = ccGRAY;
+
+    CCMenuItemSprite *item_02 = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"button_02.pvr.gz"]
+                                                        selectedSprite:selected_02
+                                                                target:self
+                                                              selector:@selector(buttonAction:)];
     
-    CCLabelBMFont *labelA = [CCLabelBMFont labelWithString:@"ASPIRE Overview" fntFile:@"main-menu-24.fnt"];
-    labelA.anchorPoint = ccp(0.5,0.6);
-    labelA.position = menuA.position;
-    [self addChild:labelA z:3];
-     */
+    CCMenu  *menu_02 = [CCMenu menuWithItems:item_02, nil];
+    [menu_02 setPosition:ccp(size.width*.5,menuStartY - sepY*1)];
+    item_02.tag = 2;
+    [self addChild:menu_02 z:2];
+
+    CCSprite *selected_03 = [CCSprite spriteWithFile:@"button_03.pvr.gz"];
+    selected_03.color = ccGRAY;
+
+    CCMenuItemSprite *item_03 = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"button_03.pvr.gz"]
+                                                        selectedSprite:selected_03
+                                                                target:self
+                                                              selector:@selector(buttonAction:)];
+    
+    CCMenu  *menu_03 = [CCMenu menuWithItems:item_03, nil];
+    [menu_03 setPosition:ccp(size.width*.5,menuStartY - sepY*2)];
+    item_03.tag = 3;
+    [self addChild:menu_03 z:2];
+
+    CCSprite *selected_04 = [CCSprite spriteWithFile:@"button_04.pvr.gz"];
+    selected_04.color = ccGRAY;
+
+    CCMenuItemSprite *item_04 = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"button_04.pvr.gz"]
+                                                        selectedSprite:selected_04
+                                                                target:self
+                                                              selector:@selector(buttonAction:)];
+    
+    CCMenu  *menu_04 = [CCMenu menuWithItems:item_04, nil];
+    [menu_04 setPosition:ccp(size.width*.5,menuStartY - sepY*3)];
+    item_04.tag = 4;
+    [self addChild:menu_04 z:2];
+
+    CCSprite *selected_05 = [CCSprite spriteWithFile:@"button_05.pvr.gz"];
+    selected_05.color = ccGRAY;
+
+    CCMenuItemSprite *item_05 = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"button_05.pvr.gz"]
+                                                        selectedSprite:selected_05
+                                                                target:self
+                                                              selector:@selector(buttonAction:)];
+    
+    CCMenu  *menu_05 = [CCMenu menuWithItems:item_05, nil];
+    [menu_05 setPosition:ccp(size.width*.5,menuStartY - sepY*4)];
+    item_05.tag = 5;
+    [self addChild:menu_05 z:2];
+
+    CCSprite *selected_06 = [CCSprite spriteWithFile:@"button_06.pvr.gz"];
+    selected_06.color = ccGRAY;
+
+    CCMenuItemSprite *item_06 = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"button_06.pvr.gz"]
+                                                        selectedSprite:selected_06
+                                                                target:self
+                                                              selector:@selector(buttonAction:)];
+    
+    CCMenu  *menu_06 = [CCMenu menuWithItems:item_06, nil];
+    [menu_06 setPosition:ccp(size.width*.5,menuStartY - sepY*5)];
+    item_06.tag = 6;
+    [self addChild:menu_06 z:2];
+
+    CCSprite *selected_07 = [CCSprite spriteWithFile:@"button_07.pvr.gz"];
+    selected_07.color = ccGRAY;
+
+    CCMenuItemSprite *item_07 = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"button_07.pvr.gz"]
+                                                        selectedSprite:selected_07
+                                                                target:self
+                                                              selector:@selector(buttonAction:)];
+    
+    CCMenu  *menu_07 = [CCMenu menuWithItems:item_07, nil];
+    [menu_07 setPosition:ccp(size.width*.5,menuStartY - sepY*6)];
+    item_07.tag = 7;
+    [self addChild:menu_07 z:2];
+
+    CCSprite *selected_08 = [CCSprite spriteWithFile:@"button_08.pvr.gz"];
+    selected_08.color = ccGRAY;
+
+    CCMenuItemSprite *item_08 = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"button_08.pvr.gz"]
+                                                        selectedSprite:selected_08
+                                                                target:self
+                                                              selector:@selector(buttonAction:)];
+    
+    CCMenu  *menu_08 = [CCMenu menuWithItems:item_08, nil];
+    [menu_08 setPosition:ccp(size.width*.5,menuStartY - sepY*7)];
+    item_08.tag = 8;
+    [self addChild:menu_08 z:2];
+
+    CCSprite *selected_09 = [CCSprite spriteWithFile:@"button_09.pvr.gz"];
+    selected_09.color = ccGRAY;
+
+    CCMenuItemSprite *item_09 = [CCMenuItemSprite itemWithNormalSprite:[CCSprite spriteWithFile:@"button_09.pvr.gz"]
+                                                        selectedSprite:selected_09
+                                                                target:self
+                                                              selector:@selector(buttonAction:)];
+    
+    CCMenu  *menu_09 = [CCMenu menuWithItems:item_09, nil];
+    [menu_09 setPosition:ccp(size.width*.5,menuStartY - sepY*8)];
+    item_09.tag = 9;
+    [self addChild:menu_09 z:2];
 
 	return self;
+}
+
+- (void) buttonAction: (CCMenu *) sender
+{
+    printf("buttonAction\n");
+
+    [[SimpleAudioEngine sharedEngine] playEffect:@"knock.caf"];
+    
+    switch (sender.tag) {
+        case 1:
+            printf("button 1 pressed\n");
+            break;
+        case 2:
+            printf("button 2 pressed\n");
+            break;
+        case 3:
+            printf("button 3 pressed\n");
+            break;
+        case 4:
+            printf("button 4 pressed\n");
+            break;
+        case 5:
+            printf("button 5 pressed\n");
+            break;
+        case 6:
+            printf("button 6 pressed\n");
+            break;
+        case 7:
+            printf("button 7 pressed\n");
+            break;
+        case 8:
+            printf("button 8 pressed\n");
+            break;
+        case 9:
+            printf("button 9 pressed\n");
+            break;
+        default:
+            break;
+    }
 }
 
 -(CCSprite*) createSpriteRectangleWithSize:(CGSize)size
@@ -110,35 +250,7 @@
 	
     //AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
     
-    [self schedule: @selector(start2:) interval:0.0f];
-    
-    //[self setTouchEnabled:YES];
-    
-}
-
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-	
-	if (!touched) {
-        
-		touched = YES;
-		
-		//printf("touched\n");
-		
-		[self schedule: @selector(start2:) interval:0.0f];
-        
-	}
-}
-
-- (void) start2: (ccTime)sender
-{
-	[self unschedule: @selector(start2:)];
-    
-    AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
-    
-    [delegate setScreenToggle:MENU];
-    
-    [delegate replaceTheScene];
+    [self setTouchEnabled:YES];
     
 }
 

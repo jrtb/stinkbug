@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E76FC060183561720021712A /* knock.caf in Resources */ = {isa = PBXBuildFile; fileRef = E76FC05E183561720021712A /* knock.caf */; };
+		E76FC061183561720021712A /* click2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E76FC05F183561720021712A /* click2.caf */; };
 		E786589618341A260047A334 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E786589518341A260047A334 /* QuartzCore.framework */; };
 		E786589818341A260047A334 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E786589718341A260047A334 /* OpenGLES.framework */; };
 		E786589A18341A260047A334 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E786589918341A260047A334 /* OpenAL.framework */; };
@@ -176,6 +178,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E76FC05E183561720021712A /* knock.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = knock.caf; path = sounds/knock.caf; sourceTree = SOURCE_ROOT; };
+		E76FC05F183561720021712A /* click2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = click2.caf; path = sounds/click2.caf; sourceTree = SOURCE_ROOT; };
 		E786589218341A260047A334 /* Stink Bugs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stink Bugs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E786589518341A260047A334 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E786589718341A260047A334 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -511,6 +515,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E76FC05D183561690021712A /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E76FC05E183561720021712A /* knock.caf */,
+				E76FC05F183561720021712A /* click2.caf */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		E786588918341A260047A334 = {
 			isa = PBXGroup;
 			children = (
@@ -564,6 +577,7 @@
 		E78658AA18341A260047A334 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E76FC05D183561690021712A /* Sounds */,
 				E7865C0818341C450047A334 /* Fonts */,
 				E7865C0718341C3F0047A334 /* Images */,
 				E78658B118341A260047A334 /* Default-Landscape~ipad.png */,
@@ -1075,6 +1089,8 @@
 				E7865C3618341C620047A334 /* button_01.pvr.gz in Resources */,
 				E7865C3E18341C620047A334 /* button_05.pvr.gz in Resources */,
 				E7865C3D18341C620047A334 /* button_05-hd.pvr.gz in Resources */,
+				E76FC060183561720021712A /* knock.caf in Resources */,
+				E76FC061183561720021712A /* click2.caf in Resources */,
 				E7865C4B18341C620047A334 /* ncsu_brick.pvr.gz in Resources */,
 				E78658B218341A260047A334 /* Default-Landscape~ipad.png in Resources */,
 				E7865C3818341C620047A334 /* button_02.pvr.gz in Resources */,

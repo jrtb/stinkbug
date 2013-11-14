@@ -10,6 +10,8 @@
 
 #import "AppDelegate.h"
 
+#import "SimpleAudioEngine.h"
+
 #import "iphoneIntroNode.h"
 #import "iphoneMenuScene.h"
 
@@ -178,6 +180,8 @@
 	// make main window visible
 	[window_ makeKeyAndVisible];
 	
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"knock.caf"];
+    
 	return YES;
 }
 
