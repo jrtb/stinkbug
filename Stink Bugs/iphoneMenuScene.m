@@ -199,9 +199,13 @@
 
     [[SimpleAudioEngine sharedEngine] playEffect:@"knock.caf"];
     
+    AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+    
     switch (sender.tag) {
         case 1:
             printf("button 1 pressed\n");
+            [delegate setScreenToggle:CONTENT];
+            [delegate replaceTheScene];
             break;
         case 2:
             printf("button 2 pressed\n");

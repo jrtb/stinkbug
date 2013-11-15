@@ -14,6 +14,7 @@
 
 #import "iphoneIntroNode.h"
 #import "iphoneMenuScene.h"
+#import "iphoneContentScene.h"
 
 @implementation MyNavigationController
 
@@ -74,6 +75,9 @@
                 break;
             case MENU:
                 [[CCDirector sharedDirector] replaceScene: [iphoneMenuScene scene]];
+                break;
+            case CONTENT:
+                [[CCDirector sharedDirector] replaceScene: [iphoneContentScene scene]];
                 break;
         }
         
@@ -181,6 +185,7 @@
 	[window_ makeKeyAndVisible];
 	
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"knock.caf"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"short_whoosh.caf"];
     
 	return YES;
 }

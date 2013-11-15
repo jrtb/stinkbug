@@ -16,6 +16,7 @@
 
 #define INTRO 151
 #define MENU 152
+#define CONTENT 153
 
 // Added only for iOS 6 support
 @interface MyNavigationController : UINavigationController <CCDirectorDelegate>

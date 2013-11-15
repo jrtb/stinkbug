@@ -47,7 +47,7 @@
         back = [CCSprite spriteWithFile:@"Default.png"];
     }
     
-    back.position = ccp(size.width*.5,size.height*.5-0.5);
+    back.position = ccp(size.width*.5,size.height*.5);
     [self addChild:back z:0];
     
     //printf("screensize: %f, %f\n",screenSize.width,screenSize.height);

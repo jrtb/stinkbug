@@ -175,6 +175,13 @@
 		E7865C4E18341C620047A334 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = E7865C3018341C620047A334 /* Default-Portrait.png */; };
 		E7865C4F18341C620047A334 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E7865C3118341C620047A334 /* Default.png */; };
 		E7865C5018341C620047A334 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7865C3218341C620047A334 /* Default@2x.png */; };
+		E7B3AC7A1836711500AC6187 /* iphoneContentScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B3AC791836711500AC6187 /* iphoneContentScene.m */; };
+		E7B3AC7D1836753200AC6187 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B3AC7C1836753200AC6187 /* CCUIViewWrapper.m */; };
+		E7B3AC801836766400AC6187 /* back_button-hd.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = E7B3AC7E1836766400AC6187 /* back_button-hd.pvr.gz */; };
+		E7B3AC811836766400AC6187 /* back_button.pvr.gz in Resources */ = {isa = PBXBuildFile; fileRef = E7B3AC7F1836766400AC6187 /* back_button.pvr.gz */; };
+		E7B3AC8418367B0E00AC6187 /* Intro.html in Resources */ = {isa = PBXBuildFile; fileRef = E7B3AC8318367B0E00AC6187 /* Intro.html */; };
+		E7B3AC861836830800AC6187 /* Threshold.html in Resources */ = {isa = PBXBuildFile; fileRef = E7B3AC851836830800AC6187 /* Threshold.html */; };
+		E7B3AC8818368C9B00AC6187 /* short_whoosh.caf in Resources */ = {isa = PBXBuildFile; fileRef = E7B3AC8718368C9B00AC6187 /* short_whoosh.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -492,6 +499,15 @@
 		E7865C3018341C620047A334 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "images/Default-Portrait.png"; sourceTree = SOURCE_ROOT; };
 		E7865C3118341C620047A334 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = images/Default.png; sourceTree = SOURCE_ROOT; };
 		E7865C3218341C620047A334 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "images/Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		E7B3AC781836711500AC6187 /* iphoneContentScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iphoneContentScene.h; sourceTree = "<group>"; };
+		E7B3AC791836711500AC6187 /* iphoneContentScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iphoneContentScene.m; sourceTree = "<group>"; };
+		E7B3AC7B1836753200AC6187 /* CCUIViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUIViewWrapper.h; sourceTree = "<group>"; };
+		E7B3AC7C1836753200AC6187 /* CCUIViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUIViewWrapper.m; sourceTree = "<group>"; };
+		E7B3AC7E1836766400AC6187 /* back_button-hd.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; name = "back_button-hd.pvr.gz"; path = "images/back_button-hd.pvr.gz"; sourceTree = SOURCE_ROOT; };
+		E7B3AC7F1836766400AC6187 /* back_button.pvr.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; name = back_button.pvr.gz; path = images/back_button.pvr.gz; sourceTree = SOURCE_ROOT; };
+		E7B3AC8318367B0E00AC6187 /* Intro.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Intro.html; path = content/Intro.html; sourceTree = SOURCE_ROOT; };
+		E7B3AC851836830800AC6187 /* Threshold.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Threshold.html; path = content/Threshold.html; sourceTree = SOURCE_ROOT; };
+		E7B3AC8718368C9B00AC6187 /* short_whoosh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = short_whoosh.caf; path = sounds/short_whoosh.caf; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -518,6 +534,7 @@
 		E76FC05D183561690021712A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				E7B3AC8718368C9B00AC6187 /* short_whoosh.caf */,
 				E76FC05E183561720021712A /* knock.caf */,
 				E76FC05F183561720021712A /* click2.caf */,
 			);
@@ -563,10 +580,14 @@
 			children = (
 				E7865A3718341A270047A334 /* AppDelegate.h */,
 				E7865A3818341A270047A334 /* AppDelegate.m */,
+				E7B3AC7B1836753200AC6187 /* CCUIViewWrapper.h */,
+				E7B3AC7C1836753200AC6187 /* CCUIViewWrapper.m */,
 				E7865C0418341C050047A334 /* iphoneIntroNode.h */,
 				E7865C0318341C050047A334 /* iphoneIntroNode.m */,
 				E7865C0218341C050047A334 /* iphoneMenuScene.h */,
 				E7865C0118341C050047A334 /* iphoneMenuScene.m */,
+				E7B3AC781836711500AC6187 /* iphoneContentScene.h */,
+				E7B3AC791836711500AC6187 /* iphoneContentScene.m */,
 				E78658AA18341A260047A334 /* Resources */,
 				E78658C218341A260047A334 /* libs */,
 				E7865A3318341A270047A334 /* Supporting Files */,
@@ -577,6 +598,7 @@
 		E78658AA18341A260047A334 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E7B3AC8218367B0300AC6187 /* Content */,
 				E76FC05D183561690021712A /* Sounds */,
 				E7865C0818341C450047A334 /* Fonts */,
 				E7865C0718341C3F0047A334 /* Images */,
@@ -956,6 +978,8 @@
 		E7865C0718341C3F0047A334 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E7B3AC7E1836766400AC6187 /* back_button-hd.pvr.gz */,
+				E7B3AC7F1836766400AC6187 /* back_button.pvr.gz */,
 				E7865C1518341C620047A334 /* bottom_bar-hd.pvr.gz */,
 				E7865C1618341C620047A334 /* bottom_bar.pvr.gz */,
 				E7865C1718341C620047A334 /* button_01-hd.pvr.gz */,
@@ -1001,6 +1025,15 @@
 				E7865C0E18341C4F0047A334 /* bottom-menu-14.png */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		E7B3AC8218367B0300AC6187 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				E7B3AC851836830800AC6187 /* Threshold.html */,
+				E7B3AC8318367B0E00AC6187 /* Intro.html */,
+			);
+			name = Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1059,8 +1092,10 @@
 				E78658BC18341A260047A334 /* Icon.png in Resources */,
 				E7865A1718341A270047A334 /* ChangeLog in Resources */,
 				E7865C3718341C620047A334 /* button_02-hd.pvr.gz in Resources */,
+				E7B3AC861836830800AC6187 /* Threshold.html in Resources */,
 				E78658B818341A260047A334 /* Icon-Small.png in Resources */,
 				E7865C4018341C620047A334 /* button_06.pvr.gz in Resources */,
+				E7B3AC8418367B0E00AC6187 /* Intro.html in Resources */,
 				E7865C3518341C620047A334 /* button_01-hd.pvr.gz in Resources */,
 				E7865C1018341C4F0047A334 /* bottom-menu-14-ipadhd.png in Resources */,
 				E7865C4A18341C620047A334 /* ncsu_brick-hd.pvr.gz in Resources */,
@@ -1069,6 +1104,7 @@
 				E7865C1318341C4F0047A334 /* bottom-menu-14.fnt in Resources */,
 				E7865C4418341C620047A334 /* button_08.pvr.gz in Resources */,
 				E7865C1418341C4F0047A334 /* bottom-menu-14.png in Resources */,
+				E7B3AC801836766400AC6187 /* back_button-hd.pvr.gz in Resources */,
 				E78658B618341A260047A334 /* Icon-Small-50.png in Resources */,
 				E7865C4818341C620047A334 /* menu_bg-ipad.pvr.gz in Resources */,
 				E78658C118341A260047A334 /* iTunesArtwork in Resources */,
@@ -1094,8 +1130,10 @@
 				E7865C4B18341C620047A334 /* ncsu_brick.pvr.gz in Resources */,
 				E78658B218341A260047A334 /* Default-Landscape~ipad.png in Resources */,
 				E7865C3818341C620047A334 /* button_02.pvr.gz in Resources */,
+				E7B3AC8818368C9B00AC6187 /* short_whoosh.caf in Resources */,
 				E7865C3418341C620047A334 /* bottom_bar.pvr.gz in Resources */,
 				E7865C4D18341C620047A334 /* Default-568h@2x.png in Resources */,
+				E7B3AC811836766400AC6187 /* back_button.pvr.gz in Resources */,
 				E7865C4318341C620047A334 /* button_08-hd.pvr.gz in Resources */,
 				E7865C0F18341C4F0047A334 /* bottom-menu-14-ipadhd.fnt in Resources */,
 				E7865C4118341C620047A334 /* button_07-hd.pvr.gz in Resources */,
@@ -1172,6 +1210,7 @@
 				E786598318341A270047A334 /* CCTexturePVR.m in Sources */,
 				E786593718341A260047A334 /* CCParallaxNode.m in Sources */,
 				E7865A2F18341A270047A334 /* vec3.c in Sources */,
+				E7B3AC7D1836753200AC6187 /* CCUIViewWrapper.m in Sources */,
 				E786592B18341A260047A334 /* CCMenuItem.m in Sources */,
 				E786598F18341A270047A334 /* CCTMXTiledMap.m in Sources */,
 				E78658F318341A260047A334 /* CCAtlasNode.m in Sources */,
@@ -1186,6 +1225,7 @@
 				E7865A3618341A270047A334 /* main.m in Sources */,
 				E7865A1518341A270047A334 /* aabb.c in Sources */,
 				E7865A2D18341A270047A334 /* vec2.c in Sources */,
+				E7B3AC7A1836711500AC6187 /* iphoneContentScene.m in Sources */,
 				E786596818341A260047A334 /* CCShaderCache.m in Sources */,
 				E786594618341A260047A334 /* CCPhysicsDebugNode.m in Sources */,
 				E786598018341A270047A334 /* CCTextureCache.m in Sources */,
