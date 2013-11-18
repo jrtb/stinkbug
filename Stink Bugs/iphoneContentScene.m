@@ -32,7 +32,7 @@
     
     CGSize size = [[CCDirector sharedDirector] winSize];
     
-    //AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
     
     CCSprite *back = [self createSpriteRectangleWithSize:CGSizeMake(size.width,size.height)];
     back.color = ccc3(255,255,255);
@@ -55,7 +55,7 @@
     bottom.position = ccp(size.width*.5,bottom.contentSize.height*.5);
     [self addChild:bottom z:2];
     
-    labelBottom = [CCLabelBMFont labelWithString:@"STINK BUG INTRODUCTION" fntFile:@"bottom-menu-14.fnt"];
+    labelBottom = [CCLabelBMFont labelWithString:delegate.currentPageDesc fntFile:@"bottom-menu-14.fnt"];
     labelBottom.anchorPoint = ccp(0.5,0.5);
     labelBottom.position = bottom.position;
     [self addChild:labelBottom z:3];
@@ -68,7 +68,7 @@
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSURL *baseURL = [NSURL fileURLWithPath:path];
     
-    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"Intro" ofType:@"html"];
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:delegate.currentPage ofType:@"html"];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
     
 	htmlView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 52.0, size.width, size.height-52.0-32.0)];
@@ -80,8 +80,6 @@
 	//questionView.editable = NO;
 	//questionView.font = [UIFont fontWithName:@"Arial" size:20.0f];
     [htmlView loadHTMLString:htmlString baseURL:baseURL];
-    
-    currentPage = @"Intro";
     
 	viewWrapper = [CCUIViewWrapper wrapperForUIView:htmlView];
 	[self addChild:viewWrapper];
@@ -127,10 +125,57 @@
             
             labelBottom.string = @"STINK BUG DYNAMIC THRESHOLD";
             
-            currentPage = @"Threshold";
+            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+
+            delegate.currentPage = @"Threshold";
+            delegate.currentPageDesc = labelBottom.string;
             
         }
-        
+
+        if ([[request.URL lastPathComponent] isEqualToString:@"GreenSB.html"]) {
+            
+            labelBottom.string = @"GREEN STINK BUG";
+            
+            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+            
+            delegate.currentPage = @"GreenSB";
+            delegate.currentPageDesc = labelBottom.string;
+            
+        }
+
+        if ([[request.URL lastPathComponent] isEqualToString:@"BrownSB.html"]) {
+            
+            labelBottom.string = @"BROWN STINK BUG";
+            
+            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+            
+            delegate.currentPage = @"BrownSB";
+            delegate.currentPageDesc = labelBottom.string;
+            
+        }
+
+        if ([[request.URL lastPathComponent] isEqualToString:@"KudzuSB.html"]) {
+            
+            labelBottom.string = @"KUDZU BUG";
+            
+            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+            
+            delegate.currentPage = @"KudzuSB";
+            delegate.currentPageDesc = labelBottom.string;
+            
+        }
+
+        if ([[request.URL lastPathComponent] isEqualToString:@"MarmoratedSB.html"]) {
+            
+            labelBottom.string = @"BROWN MARMORATED STINK BUG";
+            
+            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+            
+            delegate.currentPage = @"MarmoratedSB";
+            delegate.currentPageDesc = labelBottom.string;
+            
+        }
+
         return YES;
     }
     
@@ -141,10 +186,12 @@
 - (void) handleSwipeGestureLeft: (id) sender
 {
     printf("swipe left\n");
-    
-    NSLog(@"current URL %@",currentPage);
 
-    if ([currentPage isEqualToString:@"Intro"]) {
+    AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+
+    NSLog(@"current URL %@",delegate.currentPage);
+    
+    if ([delegate.currentPage isEqualToString:@"Intro"]) {
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
         
@@ -158,9 +205,10 @@
     
         labelBottom.string = @"STINK BUG DYNAMIC THRESHOLD";
 
-        currentPage = @"Threshold";
-        
-    } else if ([currentPage isEqualToString:@"Threshold"]) {
+        delegate.currentPage = @"Threshold";
+        delegate.currentPageDesc = labelBottom.string;
+
+    } else if ([delegate.currentPage isEqualToString:@"Threshold"]) {
         
     }
 
@@ -170,11 +218,13 @@
 {
     printf("swipe right\n");
     
-    NSLog(@"current URL %@",currentPage);
+    AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+
+    NSLog(@"current URL %@",delegate.currentPage);
     
-    if ([currentPage isEqualToString:@"Intro"]) {
+    if ([delegate.currentPage isEqualToString:@"Intro"]) {
         
-    } else if ([currentPage isEqualToString:@"Threshold"]) {
+    } else if ([delegate.currentPage isEqualToString:@"Threshold"]) {
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
         
@@ -188,8 +238,9 @@
         
         labelBottom.string = @"STINK BUG INTRODUCTION";
 
-        currentPage = @"Intro";
-        
+        delegate.currentPage = @"Intro";
+        delegate.currentPageDesc = labelBottom.string;
+
     }
     
 }
@@ -198,9 +249,11 @@
 {
     [self unschedule:@selector(finishSwipe:)];
     
+    AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSURL *baseURL = [NSURL fileURLWithPath:path];
-    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:currentPage ofType:@"html"];
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:delegate.currentPage ofType:@"html"];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
     [htmlView loadHTMLString:htmlString baseURL:baseURL];
 
@@ -242,45 +295,6 @@
     [delegate setScreenToggle:MENU];
     
     [delegate replaceTheScene];
-}
-
-- (void) buttonAction: (CCMenu *) sender
-{
-    printf("buttonAction\n");
-    
-    [[SimpleAudioEngine sharedEngine] playEffect:@"knock.caf"];
-    
-    switch (sender.tag) {
-        case 1:
-            printf("button 1 pressed\n");
-            break;
-        case 2:
-            printf("button 2 pressed\n");
-            break;
-        case 3:
-            printf("button 3 pressed\n");
-            break;
-        case 4:
-            printf("button 4 pressed\n");
-            break;
-        case 5:
-            printf("button 5 pressed\n");
-            break;
-        case 6:
-            printf("button 6 pressed\n");
-            break;
-        case 7:
-            printf("button 7 pressed\n");
-            break;
-        case 8:
-            printf("button 8 pressed\n");
-            break;
-        case 9:
-            printf("button 9 pressed\n");
-            break;
-        default:
-            break;
-    }
 }
 
 -(CCSprite*) createSpriteRectangleWithSize:(CGSize)size

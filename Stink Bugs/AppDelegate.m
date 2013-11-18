@@ -60,7 +60,7 @@
 
 @implementation AppController
 
-@synthesize window=window_, navController=navController_, director=director_, isRetina, screenToggle, deviceMode;
+@synthesize window=window_, navController=navController_, director=director_, isRetina, screenToggle, deviceMode, currentPage, currentPageDesc;
 
 - (void) replaceTheScene
 {
@@ -90,6 +90,9 @@
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
+    currentPage = @"Intro";
+    currentPageDesc = @"STINK BUG INTRODUCTION";
+    
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
 	
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)

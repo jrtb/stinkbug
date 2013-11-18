@@ -33,6 +33,9 @@
     int                 screenToggle;
 	int					deviceMode;
 
+    NSString            *currentPage;
+    NSString            *currentPageDesc;
+
 }
 
 @property (nonatomic, strong) UIWindow *window;
@@ -42,6 +45,9 @@
 @property BOOL isRetina;
 @property int screenToggle;
 @property int deviceMode;
+
+@property (nonatomic, strong) NSString *currentPage;
+@property (nonatomic, strong) NSString *currentPageDesc;
 
 - (void) replaceTheScene;
 

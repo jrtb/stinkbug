@@ -204,11 +204,17 @@
     switch (sender.tag) {
         case 1:
             printf("button 1 pressed\n");
+            delegate.currentPage = @"Intro";
+            delegate.currentPageDesc = @"STINK BUG INTRODUCTION";
             [delegate setScreenToggle:CONTENT];
             [delegate replaceTheScene];
             break;
         case 2:
             printf("button 2 pressed\n");
+            delegate.currentPage = @"Photos";
+            delegate.currentPageDesc = @"STINK BUG PESTS OF COTTON";
+            [delegate setScreenToggle:CONTENT];
+            [delegate replaceTheScene];
             break;
         case 3:
             printf("button 3 pressed\n");

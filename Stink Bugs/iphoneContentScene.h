@@ -22,9 +22,7 @@
     
     UIWebView               *htmlView;
     CCUIViewWrapper         *viewWrapper;
-    
-    NSString                *currentPage;
-    
+        
     float                   neutral;
 }
 
