@@ -176,6 +176,61 @@
             
         }
 
+        if ([[request.URL lastPathComponent] isEqualToString:@"BollWarts.html"]) {
+            
+            labelBottom.string = @"INTERNAL BOLL WARTS";
+            
+            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+            
+            delegate.currentPage = @"BollWarts";
+            delegate.currentPageDesc = labelBottom.string;
+            
+        }
+
+        if ([[request.URL lastPathComponent] isEqualToString:@"LintStain.html"]) {
+            
+            labelBottom.string = @"STAINED LINT WARTS";
+            
+            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+            
+            delegate.currentPage = @"LintStain";
+            delegate.currentPageDesc = labelBottom.string;
+            
+        }
+
+        if ([[request.URL lastPathComponent] isEqualToString:@"HardLock.html"]) {
+            
+            labelBottom.string = @"BOLLS WITH HARKLOCK";
+            
+            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+            
+            delegate.currentPage = @"HardLock";
+            delegate.currentPageDesc = labelBottom.string;
+            
+        }
+
+        if ([[request.URL lastPathComponent] isEqualToString:@"Lesions.html"]) {
+            
+            labelBottom.string = @"EXTERNAL LESIONS";
+            
+            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+            
+            delegate.currentPage = @"Lesions";
+            delegate.currentPageDesc = labelBottom.string;
+            
+        }
+
+        if ([[request.URL lastPathComponent] isEqualToString:@"DamageSymptoms.html"]) {
+            
+            labelBottom.string = @"STINK BUG DAMAGE SYMPTOMS";
+            
+            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+            
+            delegate.currentPage = @"DamageSymptoms";
+            delegate.currentPageDesc = labelBottom.string;
+            
+        }
+
         return YES;
     }
     
@@ -202,14 +257,33 @@
         [UIView animateWithDuration:0.2 animations:^{
             htmlView.frame = CGRectMake(neutral-320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
         }];
-    
-        labelBottom.string = @"STINK BUG DYNAMIC THRESHOLD";
 
-        delegate.currentPage = @"Threshold";
+        labelBottom.string = @"STINK BUG PESTS OF COTTON";
+
+        delegate.currentPage = @"Photos";
         delegate.currentPageDesc = labelBottom.string;
 
-    } else if ([delegate.currentPage isEqualToString:@"Threshold"]) {
+    } else if ([delegate.currentPage isEqualToString:@"Photos"] ||
+               [delegate.currentPage isEqualToString:@"GreenSB"] ||
+               [delegate.currentPage isEqualToString:@"BrownSB"] ||
+               [delegate.currentPage isEqualToString:@"KudzuSB"] ||
+               [delegate.currentPage isEqualToString:@"MarmoratedSB"]) {
+
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
         
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral-320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG DAMAGE SYMPTOMS";
+        
+        delegate.currentPage = @"DamageSymptoms";
+        delegate.currentPageDesc = labelBottom.string;
+
     }
 
 }
@@ -224,7 +298,7 @@
     
     if ([delegate.currentPage isEqualToString:@"Intro"]) {
         
-    } else if ([delegate.currentPage isEqualToString:@"Threshold"]) {
+    } else if ([delegate.currentPage isEqualToString:@"Photos"]) {
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
         
@@ -241,8 +315,28 @@
         delegate.currentPage = @"Intro";
         delegate.currentPageDesc = labelBottom.string;
 
-    }
-    
+    } else if ([delegate.currentPage isEqualToString:@"DamageSymptoms"] ||
+               [delegate.currentPage isEqualToString:@"GreenSB"] ||
+               [delegate.currentPage isEqualToString:@"BrownSB"] ||
+               [delegate.currentPage isEqualToString:@"KudzuSB"] ||
+               [delegate.currentPage isEqualToString:@"MarmoratedSB"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral+320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG PESTS OF COTTON";
+        
+        delegate.currentPage = @"Photos";
+        delegate.currentPageDesc = labelBottom.string;
+        
+    }     
 }
 
 - (void) finishSwipe: (ccTime) sender

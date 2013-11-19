@@ -218,12 +218,24 @@
             break;
         case 3:
             printf("button 3 pressed\n");
+            delegate.currentPage = @"DamageSymptoms";
+            delegate.currentPageDesc = @"STINK BUG DAMAGE SYMPTOMS";
+            [delegate setScreenToggle:CONTENT];
+            [delegate replaceTheScene];
             break;
         case 4:
             printf("button 4 pressed\n");
+            delegate.currentPage = @"ScoutingSteps";
+            delegate.currentPageDesc = @"STINK BUG SCOUTING STEPS";
+            [delegate setScreenToggle:CONTENT];
+            [delegate replaceTheScene];
             break;
         case 5:
             printf("button 5 pressed\n");
+            delegate.currentPage = @"Threshold";
+            delegate.currentPageDesc = @"STINK BUG DYNAMIC THRESHOLD";
+            [delegate setScreenToggle:CONTENT];
+            [delegate replaceTheScene];
             break;
         case 6:
             printf("button 6 pressed\n");
