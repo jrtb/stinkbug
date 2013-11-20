@@ -239,12 +239,24 @@
             break;
         case 6:
             printf("button 6 pressed\n");
+            delegate.currentPage = @"Card1";
+            delegate.currentPageDesc = @"STINK BUG DECISION AID CARD";
+            [delegate setScreenToggle:CONTENT];
+            [delegate replaceTheScene];
             break;
         case 7:
             printf("button 7 pressed\n");
+            delegate.currentPage = @"BollSizer";
+            delegate.currentPageDesc = @"STINK BUG BOLL SIZER";
+            [delegate setScreenToggle:CONTENT];
+            [delegate replaceTheScene];
             break;
         case 8:
             printf("button 8 pressed\n");
+            delegate.currentPage = @"Summary";
+            delegate.currentPageDesc = @"STINK BUG SUMMARY";
+            [delegate setScreenToggle:CONTENT];
+            [delegate replaceTheScene];
             break;
         case 9:
             printf("button 9 pressed\n");

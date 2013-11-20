@@ -12,7 +12,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface iphoneContentScene : CCLayer <UIGestureRecognizerDelegate, UIWebViewDelegate> {
+@interface iphoneContentScene : CCLayer <UIGestureRecognizerDelegate, UIWebViewDelegate, UIAlertViewDelegate> {
 	
 	BOOL                    touched;
     
@@ -24,6 +24,11 @@
     CCUIViewWrapper         *viewWrapper;
         
     float                   neutral;
+    
+    NSMutableArray          *dots;
+    
+    NSString                *fileName;
+
 }
 
 @property						BOOL				touched;

@@ -28,6 +28,8 @@
     
 	//printf("intro init\n");
     
+    dots = [[NSMutableArray alloc] init];
+
 	touched = NO;
     
     CGSize size = [[CCDirector sharedDirector] winSize];
@@ -71,18 +73,19 @@
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:delegate.currentPage ofType:@"html"];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
     
-	htmlView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 52.0, size.width, size.height-52.0-32.0)];
+	htmlView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 52.0, size.width, size.height-52.0-47.0)];
 	htmlView.userInteractionEnabled = YES;
     htmlView.backgroundColor = [UIColor clearColor];
     htmlView.opaque = NO;
     htmlView.delegate = self;
+    htmlView.scalesPageToFit = YES;
 	//questionView.text = question;
 	//questionView.editable = NO;
 	//questionView.font = [UIFont fontWithName:@"Arial" size:20.0f];
     [htmlView loadHTMLString:htmlString baseURL:baseURL];
     
 	viewWrapper = [CCUIViewWrapper wrapperForUIView:htmlView];
-	[self addChild:viewWrapper];
+	[self addChild:viewWrapper z:10];
     
     neutral = htmlView.frame.origin.x;
 
@@ -90,7 +93,9 @@
                                                   initWithTarget:self action:@selector(handleSwipeGestureLeft:)];
     [htmlView addGestureRecognizer:swipeGestureLeft];
     swipeGestureLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-    
+
+    [swipeGestureLeft setDelegate:self];
+
     UISwipeGestureRecognizer *swipeGestureRight = [[UISwipeGestureRecognizer alloc]
                                               initWithTarget:self action:@selector(handleSwipeGestureRight:)];
     swipeGestureRight.direction = UISwipeGestureRecognizerDirectionRight;
@@ -98,6 +103,24 @@
     
     [swipeGestureRight setDelegate:self];
 
+    /*
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                               initWithTarget:self action:@selector(longPress:)];
+    //longPress.minimumPressDuration = 2;
+    
+    [htmlView addGestureRecognizer:longPress];
+    
+    [longPress setDelegate:self];
+    */
+    
+    /*
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]
+                                    initWithTarget:self action:@selector(singleTouchPress:)];
+    tap1.numberOfTapsRequired = 1;
+    tap1.delegate = self;
+    [htmlView addGestureRecognizer:tap1];
+    */
+    
     CCSprite *a1Small = [CCSprite spriteWithFile:@"back_button.pvr.gz"];
     a1Small.color = ccGRAY;
     
@@ -110,127 +133,205 @@
     [menuA1 setPosition:ccp(size.width-40,size.height-20)];
     [self addChild:menuA1 z:70];
 
+    // dots
+    
+    for (int i=0; i < 9; i++) {
+        
+        CCSprite *aDot = [CCSprite spriteWithFile:@"dot.png"];
+        aDot.position = ccp(100.0+14.0*i,37.0);
+        aDot.scale = 0.5;
+        if (i > 0)
+            aDot.opacity = 128;
+        [self addChild:aDot z:20];
+        [dots addObject:aDot];
+
+    }
+    
+    [self schedule:@selector(adjustDots:) interval:0.1];
+    
 	return self;
+}
+
+- (void) adjustDots: (ccTime) sender
+{
+    AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+
+    for (int i=0; i < 9; i++) {
+        ((CCSprite*)[dots objectAtIndex:i]).opacity = 128;
+    }
+
+    if ([delegate.currentPage isEqualToString:@"Intro"])
+        ((CCSprite*)[dots objectAtIndex:0]).opacity = 255;
+
+    if ([delegate.currentPage isEqualToString:@"Photos"] ||
+        [delegate.currentPage isEqualToString:@"GreenSB"] ||
+        [delegate.currentPage isEqualToString:@"BrownSB"] ||
+        [delegate.currentPage isEqualToString:@"KudzuSB"] ||
+        [delegate.currentPage isEqualToString:@"MarmoratedSB"])
+        ((CCSprite*)[dots objectAtIndex:1]).opacity = 255;
+
+    if ([delegate.currentPage isEqualToString:@"DamageSymptoms"] ||
+        [delegate.currentPage isEqualToString:@"BoolWarts"] ||
+        [delegate.currentPage isEqualToString:@"LintStain"] ||
+        [delegate.currentPage isEqualToString:@"HardLock"] ||
+        [delegate.currentPage isEqualToString:@"Lesions"])
+        ((CCSprite*)[dots objectAtIndex:2]).opacity = 255;
+
+    if ([delegate.currentPage isEqualToString:@"ScoutingSteps"])
+        ((CCSprite*)[dots objectAtIndex:3]).opacity = 255;
+
+    if ([delegate.currentPage isEqualToString:@"Threshold"])
+        ((CCSprite*)[dots objectAtIndex:4]).opacity = 255;
+
+    if ([delegate.currentPage isEqualToString:@"Card1"])
+        ((CCSprite*)[dots objectAtIndex:5]).opacity = 255;
+
+    if ([delegate.currentPage isEqualToString:@"BollSizer"])
+        ((CCSprite*)[dots objectAtIndex:6]).opacity = 255;
+
+    if ([delegate.currentPage isEqualToString:@"Summary"])
+        ((CCSprite*)[dots objectAtIndex:7]).opacity = 255;
+
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     
     if (navigationType == UIWebViewNavigationTypeLinkClicked){
     
-        [[SimpleAudioEngine sharedEngine] playEffect:@"knock.caf"];
+        if ([[request.URL lastPathComponent] rangeOfString:@"JPG"].location != NSNotFound ||
+            [[request.URL lastPathComponent] rangeOfString:@"jpg"].location != NSNotFound) {
+            
+            printf("image clicked, don't do anything here\n");
+            
+            [[SimpleAudioEngine sharedEngine] playEffect:@"knock.caf"];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save this image?" message:@"Would you like to save this image to your Gallery?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:nil];
+            // optional - add more buttons:
+            [alert addButtonWithTitle:@"Yes"];
+            [alert show];
+            
+            fileName = [request.URL absoluteString];
 
-        //NSLog(@"loading URL %@",[request.URL lastPathComponent]);
+            return NO;
+            
+        } else {
         
-        if ([[request.URL lastPathComponent] isEqualToString:@"Threshold.html"]) {
+            [[SimpleAudioEngine sharedEngine] playEffect:@"knock.caf"];
             
-            labelBottom.string = @"STINK BUG DYNAMIC THRESHOLD";
+            NSLog(@"loading URL %@",[request.URL lastPathComponent]);
             
-            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+            if ([[request.URL lastPathComponent] isEqualToString:@"Threshold.html"]) {
+                
+                labelBottom.string = @"STINK BUG DYNAMIC THRESHOLD";
+                
+                AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+                
+                delegate.currentPage = @"Threshold";
+                delegate.currentPageDesc = labelBottom.string;
+                
+            }
+            
+            if ([[request.URL lastPathComponent] isEqualToString:@"GreenSB.html"]) {
+                
+                labelBottom.string = @"GREEN STINK BUG";
+                
+                AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+                
+                delegate.currentPage = @"GreenSB";
+                delegate.currentPageDesc = labelBottom.string;
+                
+            }
+            
+            if ([[request.URL lastPathComponent] isEqualToString:@"BrownSB.html"]) {
+                
+                labelBottom.string = @"BROWN STINK BUG";
+                
+                AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+                
+                delegate.currentPage = @"BrownSB";
+                delegate.currentPageDesc = labelBottom.string;
+                
+            }
+            
+            if ([[request.URL lastPathComponent] isEqualToString:@"KudzuSB.html"]) {
+                
+                labelBottom.string = @"KUDZU BUG";
+                
+                AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+                
+                delegate.currentPage = @"KudzuSB";
+                delegate.currentPageDesc = labelBottom.string;
+                
+            }
+            
+            if ([[request.URL lastPathComponent] isEqualToString:@"MarmoratedSB.html"]) {
+                
+                labelBottom.string = @"BROWN MARMORATED STINK BUG";
+                
+                AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+                
+                delegate.currentPage = @"MarmoratedSB";
+                delegate.currentPageDesc = labelBottom.string;
+                
+            }
+            
+            if ([[request.URL lastPathComponent] isEqualToString:@"BollWarts.html"]) {
+                
+                labelBottom.string = @"INTERNAL BOLL WARTS";
+                
+                AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+                
+                delegate.currentPage = @"BollWarts";
+                delegate.currentPageDesc = labelBottom.string;
+                
+            }
+            
+            if ([[request.URL lastPathComponent] isEqualToString:@"LintStain.html"]) {
+                
+                labelBottom.string = @"STAINED LINT WARTS";
+                
+                AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+                
+                delegate.currentPage = @"LintStain";
+                delegate.currentPageDesc = labelBottom.string;
+                
+            }
+            
+            if ([[request.URL lastPathComponent] isEqualToString:@"HardLock.html"]) {
+                
+                labelBottom.string = @"BOLLS WITH HARKLOCK";
+                
+                AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+                
+                delegate.currentPage = @"HardLock";
+                delegate.currentPageDesc = labelBottom.string;
+                
+            }
+            
+            if ([[request.URL lastPathComponent] isEqualToString:@"Lesions.html"]) {
+                
+                labelBottom.string = @"EXTERNAL LESIONS";
+                
+                AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+                
+                delegate.currentPage = @"Lesions";
+                delegate.currentPageDesc = labelBottom.string;
+                
+            }
+            
+            if ([[request.URL lastPathComponent] isEqualToString:@"DamageSymptoms.html"]) {
+                
+                labelBottom.string = @"STINK BUG DAMAGE SYMPTOMS";
+                
+                AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+                
+                delegate.currentPage = @"DamageSymptoms";
+                delegate.currentPageDesc = labelBottom.string;
+                
+            }
 
-            delegate.currentPage = @"Threshold";
-            delegate.currentPageDesc = labelBottom.string;
-            
         }
-
-        if ([[request.URL lastPathComponent] isEqualToString:@"GreenSB.html"]) {
-            
-            labelBottom.string = @"GREEN STINK BUG";
-            
-            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
-            
-            delegate.currentPage = @"GreenSB";
-            delegate.currentPageDesc = labelBottom.string;
-            
-        }
-
-        if ([[request.URL lastPathComponent] isEqualToString:@"BrownSB.html"]) {
-            
-            labelBottom.string = @"BROWN STINK BUG";
-            
-            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
-            
-            delegate.currentPage = @"BrownSB";
-            delegate.currentPageDesc = labelBottom.string;
-            
-        }
-
-        if ([[request.URL lastPathComponent] isEqualToString:@"KudzuSB.html"]) {
-            
-            labelBottom.string = @"KUDZU BUG";
-            
-            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
-            
-            delegate.currentPage = @"KudzuSB";
-            delegate.currentPageDesc = labelBottom.string;
-            
-        }
-
-        if ([[request.URL lastPathComponent] isEqualToString:@"MarmoratedSB.html"]) {
-            
-            labelBottom.string = @"BROWN MARMORATED STINK BUG";
-            
-            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
-            
-            delegate.currentPage = @"MarmoratedSB";
-            delegate.currentPageDesc = labelBottom.string;
-            
-        }
-
-        if ([[request.URL lastPathComponent] isEqualToString:@"BollWarts.html"]) {
-            
-            labelBottom.string = @"INTERNAL BOLL WARTS";
-            
-            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
-            
-            delegate.currentPage = @"BollWarts";
-            delegate.currentPageDesc = labelBottom.string;
-            
-        }
-
-        if ([[request.URL lastPathComponent] isEqualToString:@"LintStain.html"]) {
-            
-            labelBottom.string = @"STAINED LINT WARTS";
-            
-            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
-            
-            delegate.currentPage = @"LintStain";
-            delegate.currentPageDesc = labelBottom.string;
-            
-        }
-
-        if ([[request.URL lastPathComponent] isEqualToString:@"HardLock.html"]) {
-            
-            labelBottom.string = @"BOLLS WITH HARKLOCK";
-            
-            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
-            
-            delegate.currentPage = @"HardLock";
-            delegate.currentPageDesc = labelBottom.string;
-            
-        }
-
-        if ([[request.URL lastPathComponent] isEqualToString:@"Lesions.html"]) {
-            
-            labelBottom.string = @"EXTERNAL LESIONS";
-            
-            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
-            
-            delegate.currentPage = @"Lesions";
-            delegate.currentPageDesc = labelBottom.string;
-            
-        }
-
-        if ([[request.URL lastPathComponent] isEqualToString:@"DamageSymptoms.html"]) {
-            
-            labelBottom.string = @"STINK BUG DAMAGE SYMPTOMS";
-            
-            AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
-            
-            delegate.currentPage = @"DamageSymptoms";
-            delegate.currentPageDesc = labelBottom.string;
-            
-        }
-
+        
         return YES;
     }
     
@@ -284,6 +385,95 @@
         delegate.currentPage = @"DamageSymptoms";
         delegate.currentPageDesc = labelBottom.string;
 
+    } else if ([delegate.currentPage isEqualToString:@"DamageSymptoms"] ||
+               [delegate.currentPage isEqualToString:@"BollWarts"] ||
+               [delegate.currentPage isEqualToString:@"LintStain"] ||
+               [delegate.currentPage isEqualToString:@"HardLock"] ||
+               [delegate.currentPage isEqualToString:@"Lesions"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral-320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG SCOUTING STEPS";
+        
+        delegate.currentPage = @"ScoutingSteps";
+        delegate.currentPageDesc = labelBottom.string;
+        
+    } else if ([delegate.currentPage isEqualToString:@"ScoutingSteps"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral-320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG DYNAMIC THRESHOLD";
+        
+        delegate.currentPage = @"Threshold";
+        delegate.currentPageDesc = labelBottom.string;
+        
+    } else if ([delegate.currentPage isEqualToString:@"Threshold"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral-320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG DECISION AID CARD";
+        
+        delegate.currentPage = @"Card1";
+        delegate.currentPageDesc = labelBottom.string;
+        
+    } else if ([delegate.currentPage isEqualToString:@"Card1"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral-320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG BOLL SIZER";
+        
+        delegate.currentPage = @"BollSizer";
+        delegate.currentPageDesc = labelBottom.string;
+        
+    } else if ([delegate.currentPage isEqualToString:@"BollSizer"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral-320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG SUMMARY";
+        
+        delegate.currentPage = @"Summary";
+        delegate.currentPageDesc = labelBottom.string;
+        
     }
 
 }
@@ -293,7 +483,7 @@
     printf("swipe right\n");
     
     AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
-
+    
     NSLog(@"current URL %@",delegate.currentPage);
     
     if ([delegate.currentPage isEqualToString:@"Intro"]) {
@@ -311,10 +501,10 @@
         }];
         
         labelBottom.string = @"STINK BUG INTRODUCTION";
-
+        
         delegate.currentPage = @"Intro";
         delegate.currentPageDesc = labelBottom.string;
-
+        
     } else if ([delegate.currentPage isEqualToString:@"DamageSymptoms"] ||
                [delegate.currentPage isEqualToString:@"GreenSB"] ||
                [delegate.currentPage isEqualToString:@"BrownSB"] ||
@@ -336,7 +526,211 @@
         delegate.currentPage = @"Photos";
         delegate.currentPageDesc = labelBottom.string;
         
-    }     
+    } else if ([delegate.currentPage isEqualToString:@"ScoutingSteps"] ||
+               [delegate.currentPage isEqualToString:@"BollWarts"] ||
+               [delegate.currentPage isEqualToString:@"LintStain"] ||
+               [delegate.currentPage isEqualToString:@"HardLock"] ||
+               [delegate.currentPage isEqualToString:@"Lesions"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral+320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG DAMAGE SYMPTOMS";
+        
+        delegate.currentPage = @"DamageSymptoms";
+        delegate.currentPageDesc = labelBottom.string;
+        
+    } else if ([delegate.currentPage isEqualToString:@"Threshold"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral+320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG SCOUTING STEPS";
+        
+        delegate.currentPage = @"ScoutingSteps";
+        delegate.currentPageDesc = labelBottom.string;
+        
+    } else if ([delegate.currentPage isEqualToString:@"Card1"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral+320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG DYNAMIC THRESHOLD";
+        
+        delegate.currentPage = @"Threshold";
+        delegate.currentPageDesc = labelBottom.string;
+        
+    } else if ([delegate.currentPage isEqualToString:@"BollSizer"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral+320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG DECISION AID CARD";
+        
+        delegate.currentPage = @"Card1";
+        delegate.currentPageDesc = labelBottom.string;
+        
+    } else if ([delegate.currentPage isEqualToString:@"Summary"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral+320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG BOLL SIZER";
+        
+        delegate.currentPage = @"BollSizer";
+        delegate.currentPageDesc = labelBottom.string;
+        
+    }
+
+}
+
+- (void) singleTouchPress: (UILongPressGestureRecognizer*)gesture
+{
+    printf("single touch press\n");
+    
+    int scrollPositionY = [[htmlView stringByEvaluatingJavaScriptFromString:@"window.pageYOffset"] intValue];
+    int scrollPositionX = [[htmlView stringByEvaluatingJavaScriptFromString:@"window.pageXOffset"] intValue];
+    
+    int displayWidth = [[htmlView stringByEvaluatingJavaScriptFromString:@"window.outerWidth"] intValue];
+    CGFloat scale = htmlView.frame.size.width / displayWidth;
+    
+    CGPoint pt = [gesture locationInView:htmlView];
+    pt.x *= scale;
+    pt.y *= scale;
+    pt.x += scrollPositionX;
+    pt.y += scrollPositionY;
+    
+    NSString *js = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).tagName", pt.x, pt.y];
+    NSString * tagName = [htmlView stringByEvaluatingJavaScriptFromString:js];
+    
+    NSString *imgURL = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", pt.x, pt.y];
+    NSString *urlToSave = [htmlView stringByEvaluatingJavaScriptFromString:imgURL];
+    
+    NSLog(@"tagName: %@", tagName);
+    NSLog(@"urlToSave: %@", urlToSave);
+    
+    if ([tagName isEqualToString:@"IMG"]) {
+    
+        [[SimpleAudioEngine sharedEngine] playEffect:@"knock.caf"];
+
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save this image?" message:@"Would you like to save this image to your Gallery?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:nil];
+        // optional - add more buttons:
+        [alert addButtonWithTitle:@"Yes"];
+        [alert show];
+        
+        fileName = urlToSave;
+        
+    }
+
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        
+        NSURL *url = [NSURL URLWithString:fileName];
+        
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+        
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Saved" message:@"Image saved to your Gallery." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+        
+        [alert show];
+
+    }
+}
+
+- (void) longPress: (UILongPressGestureRecognizer*)gesture
+{
+    if ( gesture.state == UIGestureRecognizerStateEnded ) {
+
+        printf("long press\n");
+        
+        int scrollPositionY = [[htmlView stringByEvaluatingJavaScriptFromString:@"window.pageYOffset"] intValue];
+        int scrollPositionX = [[htmlView stringByEvaluatingJavaScriptFromString:@"window.pageXOffset"] intValue];
+        
+        int displayWidth = [[htmlView stringByEvaluatingJavaScriptFromString:@"window.outerWidth"] intValue];
+        CGFloat scale = htmlView.frame.size.width / displayWidth;
+        
+        CGPoint pt = [gesture locationInView:htmlView];
+        pt.x *= scale;
+        pt.y *= scale;
+        pt.x += scrollPositionX;
+        pt.y += scrollPositionY;
+        
+        NSString *js = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).tagName", pt.x, pt.y];
+        NSString * tagName = [htmlView stringByEvaluatingJavaScriptFromString:js];
+        
+        NSString *imgURL = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", pt.x, pt.y];
+        NSString *urlToSave = [htmlView stringByEvaluatingJavaScriptFromString:imgURL];
+        
+        NSLog(@"tagName: %@", tagName);
+        NSLog(@"urlToSave: %@", urlToSave);
+        
+        if ([tagName isEqualToString:@"IMG"]) {
+            
+            [[SimpleAudioEngine sharedEngine] playEffect:@"knock.caf"];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save this image?" message:@"Would you like to save this image to your Gallery?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:nil];
+            // optional - add more buttons:
+            [alert addButtonWithTitle:@"Yes"];
+            [alert show];
+            
+            fileName = urlToSave;
+            
+        }
+        
+        /*
+         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+         // Request to save the image to camera roll
+         [library writeImageToSavedPhotosAlbum:[viewImage CGImage] orientation:(ALAssetOrientation)[viewImage imageOrientation] completionBlock:^(NSURL *assetURL, NSError *error){
+         */
+        
+        /*
+         UIImage * downloadImage = [[UIImage alloc] initWithContentsOfFile:path];
+         UIImageWriteToSavedPhotosAlbum(downloadImage,nil, nil, nil);
+         
+         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Saved" message:@"Image saved to your Gallery." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+         
+         [alert show];
+         */
+
+    }
 }
 
 - (void) finishSwipe: (ccTime) sender
@@ -419,6 +813,15 @@
 	
     [self unscheduleAllSelectors];
     
+    for (int i=0; i < [dots count]; i++) {
+		id aPiece = [dots objectAtIndex:i];
+		[aPiece stopAllActions];
+        [aPiece removeAllChildrenWithCleanup:YES];
+		[self removeChild:aPiece cleanup:YES];
+	}
+	[dots removeAllObjects];
+	dots = nil;
+
     [self removeAllChildrenWithCleanup:YES];
     
 	[[CCDirector sharedDirector] purgeCachedData];
