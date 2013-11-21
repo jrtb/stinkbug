@@ -11,12 +11,14 @@
 #import "SimpleAudioEngine.h"
 #import "AppDelegate.h"
 
+#import "CCUIViewWrapper.h"
+
 //
 // Small scene that plays the background music and makes a transition to the Menu scene
 //
 @implementation iphoneMenuScene
 
-@synthesize touched;
+@synthesize touched, image;
 
 +(id) scene {
 	CCScene *s = [CCScene node];
@@ -37,7 +39,7 @@
     
     CGSize size = [[CCDirector sharedDirector] winSize];
     
-    //AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
     
     CCSprite *back = [self createSpriteRectangleWithSize:CGSizeMake(size.width,size.height)];
     back.color = ccc3(255,255,255);
@@ -190,7 +192,126 @@
     item_09.tag = 9;
     [self addChild:menu_09 z:2];
 
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])  {
+
+        CCSprite *selected_10 = [CCSprite spriteWithFile:@"camera_button.pvr.gz"];
+        selected_10.color = ccGRAY;
+        
+        CCSprite *selected_10a = [CCSprite spriteWithFile:@"camera_button.pvr.gz"];
+        selected_10a.color = ccc3(225, 225, 225);
+
+        if (!delegate.isRetina) {
+            selected_10.scale = 0.75;
+            selected_10a.scale = 0.75;
+        }
+        
+        CCMenuItemSprite *item_10 = [CCMenuItemSprite itemWithNormalSprite:selected_10a
+                                                            selectedSprite:selected_10
+                                                                    target:self
+                                                                  selector:@selector(cameraAction:)];
+        
+        CCMenu  *menu_10 = [CCMenu menuWithItems:item_10, nil];
+        [menu_10 setPosition:ccp(39,60)];
+        [self addChild:menu_10 z:2];
+        
+    }
+
 	return self;
+}
+
+- (void) cameraAction: (CCMenu *) sender
+{
+    printf("cameraAction\n");
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"knock.caf"];
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Use the camera?" message:@"Would you like to use your device's camera to send a picture to an extension agent?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:nil];
+    // optional - add more buttons:
+    [alert addButtonWithTitle:@"Yes"];
+    [alert show];
+
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [[CCDirector sharedDirector] presentViewController:picker animated:YES completion:nil];
+        
+    }
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    image = info[UIImagePickerControllerEditedImage];
+    
+    //self.imageView.image = chosenImage;
+    
+    [self showEmailModalView];
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+-(void) showEmailModalView
+{
+    
+	MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+	picker.mailComposeDelegate = self; // very important step if you want feedbacks on what the user did with your email sheet
+	picker.wantsFullScreenLayout = YES;
+	
+    //[picker setToRecipients:[NSArray arrayWithObject:@""]];
+    
+	NSString *emailBody = [NSString stringWithFormat:@""];
+    
+	NSString *title = [NSString stringWithFormat:@"Stink Bug App picture email submission"];
+    
+	[picker setSubject:title];
+    
+    [picker addAttachmentData:UIImageJPEGRepresentation(image, 1) mimeType:@"image/jpeg" fileName:@"MyFile.jpeg"];
+    
+	[picker setMessageBody:emailBody isHTML:YES]; // depends. Mostly YES, unless you want to send it as plain text (boring)
+	
+	picker.navigationBar.barStyle = UIBarStyleDefault; // choose your style, unfortunately, Translucent colors behave quirky.
+	
+	[[CCDirector sharedDirector] presentViewController:picker animated:YES completion:nil];
+    
+}
+
+// Dismisses the email composition interface when users tap Cancel or Send. Proceeds to update the message field with the result of the operation.
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+	// Notifies users about errors associated with the interface
+	switch (result)
+	{
+		case MFMailComposeResultCancelled:
+			break;
+		case MFMailComposeResultSaved:
+			break;
+		case MFMailComposeResultSent:
+            //socialSent = YES;
+			break;
+		case MFMailComposeResultFailed:
+			break;
+			
+            default:
+		{
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email" message:@"Sending Failed - Unknown Error"
+														   delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+			[alert show];
+		}
+			
+			break;
+	}
+    
+	// Dismiss UIImagePickerController and release it
+	[controller dismissModalViewControllerAnimated:NO];
+	[controller.view removeFromSuperview];
+    
 }
 
 - (void) buttonAction: (CCMenu *) sender
@@ -260,6 +381,10 @@
             break;
         case 9:
             printf("button 9 pressed\n");
+            delegate.currentPage = @"more";
+            delegate.currentPageDesc = @"STINK BUG INFO";
+            [delegate setScreenToggle:CONTENT];
+            [delegate replaceTheScene];
             break;
         default:
             break;

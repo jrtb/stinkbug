@@ -139,7 +139,6 @@
         
         CCSprite *aDot = [CCSprite spriteWithFile:@"dot.png"];
         aDot.position = ccp(100.0+14.0*i,37.0);
-        aDot.scale = 0.5;
         if (i > 0)
             aDot.opacity = 128;
         [self addChild:aDot z:20];
@@ -191,6 +190,9 @@
 
     if ([delegate.currentPage isEqualToString:@"Summary"])
         ((CCSprite*)[dots objectAtIndex:7]).opacity = 255;
+
+    if ([delegate.currentPage isEqualToString:@"more"])
+        ((CCSprite*)[dots objectAtIndex:8]).opacity = 255;
 
 }
 
@@ -474,6 +476,23 @@
         delegate.currentPage = @"Summary";
         delegate.currentPageDesc = labelBottom.string;
         
+    } else if ([delegate.currentPage isEqualToString:@"Summary"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral-320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG INFO";
+        
+        delegate.currentPage = @"more";
+        delegate.currentPageDesc = labelBottom.string;
+        
     }
 
 }
@@ -613,6 +632,23 @@
         labelBottom.string = @"STINK BUG BOLL SIZER";
         
         delegate.currentPage = @"BollSizer";
+        delegate.currentPageDesc = labelBottom.string;
+        
+    } else if ([delegate.currentPage isEqualToString:@"more"]) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
+        
+        [self setTouchEnabled:NO];
+        
+        [self schedule:@selector(finishSwipe:) interval:0.2];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            htmlView.frame = CGRectMake(neutral+320, htmlView.frame.origin.y, htmlView.frame.size.width, htmlView.frame.size.height);
+        }];
+        
+        labelBottom.string = @"STINK BUG SUMMARY";
+        
+        delegate.currentPage = @"Summary";
         delegate.currentPageDesc = labelBottom.string;
         
     }
