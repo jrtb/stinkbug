@@ -135,10 +135,10 @@
 
     // dots
     
-    for (int i=0; i < 9; i++) {
+    for (int i=0; i < 8; i++) {
         
         CCSprite *aDot = [CCSprite spriteWithFile:@"dot.png"];
-        aDot.position = ccp(100.0+14.0*i,37.0);
+        aDot.position = ccp(110.0+14.0*i,37.0);
         if (i > 0)
             aDot.opacity = 128;
         [self addChild:aDot z:20];
@@ -155,7 +155,7 @@
 {
     AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
 
-    for (int i=0; i < 9; i++) {
+    for (int i=0; i < 8; i++) {
         ((CCSprite*)[dots objectAtIndex:i]).opacity = 128;
     }
 
@@ -191,8 +191,8 @@
     if ([delegate.currentPage isEqualToString:@"Summary"])
         ((CCSprite*)[dots objectAtIndex:7]).opacity = 255;
 
-    if ([delegate.currentPage isEqualToString:@"more"])
-        ((CCSprite*)[dots objectAtIndex:8]).opacity = 255;
+    //if ([delegate.currentPage isEqualToString:@"more"])
+    //    ((CCSprite*)[dots objectAtIndex:8]).opacity = 255;
 
 }
 
@@ -476,7 +476,7 @@
         delegate.currentPage = @"Summary";
         delegate.currentPageDesc = labelBottom.string;
         
-    } else if ([delegate.currentPage isEqualToString:@"Summary"]) {
+    } /* else if ([delegate.currentPage isEqualToString:@"Summary"]) {
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
         
@@ -493,7 +493,7 @@
         delegate.currentPage = @"more";
         delegate.currentPageDesc = labelBottom.string;
         
-    }
+    } */
 
 }
 
@@ -634,7 +634,7 @@
         delegate.currentPage = @"BollSizer";
         delegate.currentPageDesc = labelBottom.string;
         
-    } else if ([delegate.currentPage isEqualToString:@"more"]) {
+    } /* else if ([delegate.currentPage isEqualToString:@"more"]) {
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
         
@@ -651,7 +651,7 @@
         delegate.currentPage = @"Summary";
         delegate.currentPageDesc = labelBottom.string;
         
-    }
+    } */
 
 }
 

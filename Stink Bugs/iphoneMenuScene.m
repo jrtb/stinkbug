@@ -374,15 +374,13 @@
             break;
         case 8:
             printf("button 8 pressed\n");
-            delegate.currentPage = @"Summary";
-            delegate.currentPageDesc = @"STINK BUG SUMMARY";
-            [delegate setScreenToggle:CONTENT];
+            [delegate setScreenToggle:CALC];
             [delegate replaceTheScene];
             break;
         case 9:
             printf("button 9 pressed\n");
-            delegate.currentPage = @"more";
-            delegate.currentPageDesc = @"STINK BUG INFO";
+            delegate.currentPage = @"Summary";
+            delegate.currentPageDesc = @"STINK BUG SUMMARY";
             [delegate setScreenToggle:CONTENT];
             [delegate replaceTheScene];
             break;

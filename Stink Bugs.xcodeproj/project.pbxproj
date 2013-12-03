@@ -254,6 +254,7 @@
 		E7B3AC8418367B0E00AC6187 /* Intro.html in Resources */ = {isa = PBXBuildFile; fileRef = E7B3AC8318367B0E00AC6187 /* Intro.html */; };
 		E7B3AC861836830800AC6187 /* Threshold.html in Resources */ = {isa = PBXBuildFile; fileRef = E7B3AC851836830800AC6187 /* Threshold.html */; };
 		E7B3AC8818368C9B00AC6187 /* short_whoosh.caf in Resources */ = {isa = PBXBuildFile; fileRef = E7B3AC8718368C9B00AC6187 /* short_whoosh.caf */; };
+		E7E041A5184E66E400C68589 /* iphoneCalcScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E041A4184E66E400C68589 /* iphoneCalcScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -652,6 +653,8 @@
 		E7B3AC8318367B0E00AC6187 /* Intro.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Intro.html; path = content/Intro.html; sourceTree = SOURCE_ROOT; };
 		E7B3AC851836830800AC6187 /* Threshold.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Threshold.html; path = content/Threshold.html; sourceTree = SOURCE_ROOT; };
 		E7B3AC8718368C9B00AC6187 /* short_whoosh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = short_whoosh.caf; path = sounds/short_whoosh.caf; sourceTree = SOURCE_ROOT; };
+		E7E041A3184E66E400C68589 /* iphoneCalcScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iphoneCalcScene.h; sourceTree = "<group>"; };
+		E7E041A4184E66E400C68589 /* iphoneCalcScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iphoneCalcScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -781,6 +784,8 @@
 				E7865C0118341C050047A334 /* iphoneMenuScene.m */,
 				E7B3AC781836711500AC6187 /* iphoneContentScene.h */,
 				E7B3AC791836711500AC6187 /* iphoneContentScene.m */,
+				E7E041A3184E66E400C68589 /* iphoneCalcScene.h */,
+				E7E041A4184E66E400C68589 /* iphoneCalcScene.m */,
 				E78658AA18341A260047A334 /* Resources */,
 				E78658C218341A260047A334 /* libs */,
 				E7865A3318341A270047A334 /* Supporting Files */,
@@ -1514,6 +1519,7 @@
 				E786596E18341A270047A334 /* CCSprite.m in Sources */,
 				E786598318341A270047A334 /* CCTexturePVR.m in Sources */,
 				E786593718341A260047A334 /* CCParallaxNode.m in Sources */,
+				E7E041A5184E66E400C68589 /* iphoneCalcScene.m in Sources */,
 				E7865A2F18341A270047A334 /* vec3.c in Sources */,
 				E7B3AC7D1836753200AC6187 /* CCUIViewWrapper.m in Sources */,
 				E786592B18341A260047A334 /* CCMenuItem.m in Sources */,

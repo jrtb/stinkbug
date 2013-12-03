@@ -15,6 +15,7 @@
 #import "iphoneIntroNode.h"
 #import "iphoneMenuScene.h"
 #import "iphoneContentScene.h"
+#import "iphoneCalcScene.h"
 
 @implementation MyNavigationController
 
@@ -78,6 +79,9 @@
                 break;
             case CONTENT:
                 [[CCDirector sharedDirector] replaceScene: [iphoneContentScene scene]];
+                break;
+            case CALC:
+                [[CCDirector sharedDirector] replaceScene: [iphoneCalcScene scene]];
                 break;
         }
         
