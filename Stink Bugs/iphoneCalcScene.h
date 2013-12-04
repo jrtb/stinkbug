@@ -10,13 +10,20 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface iphoneCalcScene : CCLayer {
+@interface iphoneCalcScene : CCLayer <UITextViewDelegate, UITextFieldDelegate> {
 	
 	BOOL                    touched;
     
     float                   iphoneAddY;
     
     CCLabelBMFont           *labelBottom;
+    
+    UITextField             *task_01Field;
+    UITextField             *task_02Field;
+    UITextField             *task_03Field;
+
+    CCLabelTTF              *treatment_threshold_calculated;
+    CCLabelTTF              *your_threshold_calculated;
 }
 
 @property						BOOL				touched;
