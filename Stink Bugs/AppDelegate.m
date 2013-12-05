@@ -17,6 +17,11 @@
 #import "iphoneContentScene.h"
 #import "iphoneCalcScene.h"
 
+#import "IntroNode.h"
+#import "MenuScene.h"
+#import "ContentScene.h"
+#import "CalcScene.h"
+
 @implementation MyNavigationController
 
 // The available orientations should be defined in the Info.plist file.
@@ -53,7 +58,13 @@
 	if(director.runningScene == nil) {
 		// Add the first scene to the stack. The director will draw it immediately into the framebuffer. (Animation is started automatically when the view is displayed.)
 		// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-		[director runWithScene: [iphoneIntroNode scene]];
+
+        if (IS_IPAD) {
+            [director runWithScene: [IntroNode scene]];
+        } else {
+            [director runWithScene: [iphoneIntroNode scene]];
+        }
+
 	}
 }
 @end
@@ -61,13 +72,28 @@
 
 @implementation AppController
 
-@synthesize window=window_, navController=navController_, director=director_, isRetina, screenToggle, deviceMode, currentPage, currentPageDesc;
+@synthesize window=window_, navController=navController_, director=director_, isRetina, screenToggle, currentPage, currentPageDesc;
 
 - (void) replaceTheScene
 {
     
-    if (deviceMode == IPAD) {
-        
+    if (IS_IPAD) {
+
+        switch (screenToggle) {
+            case INTRO:
+                [[CCDirector sharedDirector] replaceScene: [IntroNode scene]];
+                break;
+            case MENU:
+                [[CCDirector sharedDirector] replaceScene: [MenuScene scene]];
+                break;
+            case CONTENT:
+                [[CCDirector sharedDirector] replaceScene: [ContentScene scene]];
+                break;
+            case CALC:
+                [[CCDirector sharedDirector] replaceScene: [CalcScene scene]];
+                break;
+        }
+
     } else {
         
         switch (screenToggle) {
@@ -97,23 +123,6 @@
     currentPage = @"Intro";
     currentPageDesc = @"STINK BUG INTRODUCTION";
     
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
-	
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-	{
-		NSLog(@"iPad Idiom");
-		deviceMode = IPAD;
-	}
-	else
-		
-#endif
-		
-	{
-		NSLog(@"iPhone Idiom");
-		deviceMode = IPHONE;
-		
-	}
-
 	// CCGLView creation
 	// viewWithFrame: size of the OpenGL view. For full screen use [_window bounds]
 	//  - Possible values: any CGRect
@@ -137,7 +146,7 @@
 	
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
 	
-	director_.wantsFullScreenLayout = YES;
+	//director_.wantsFullScreenLayout = YES;
 	
 	// Display FSP and SPF
 	//[director_ setDisplayStats:YES];
@@ -152,12 +161,16 @@
 	[director_ setProjection:kCCDirectorProjection2D];
 	//	[director setProjection:kCCDirectorProjection3D];
 	
-	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ! [director_ enableRetinaDisplay:YES] ) {
-		CCLOG(@"Retina Display Not supported");
-        isRetina = NO;
-    } else {
-        isRetina = YES;
+    if (!IS_IPAD) {
+
+        // Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
+        if( ! [director_ enableRetinaDisplay:YES] ) {
+            CCLOG(@"Retina Display Not supported");
+            isRetina = NO;
+        } else {
+            isRetina = YES;
+        }
+
     }
 	
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images

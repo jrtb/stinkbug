@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 
 #define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 #define IPAD 0
 #define IPHONE 1
@@ -32,7 +33,6 @@
     
     BOOL                isRetina;
     int                 screenToggle;
-	int					deviceMode;
 
     NSString            *currentPage;
     NSString            *currentPageDesc;
@@ -45,7 +45,6 @@
 
 @property BOOL isRetina;
 @property int screenToggle;
-@property int deviceMode;
 
 @property (nonatomic, strong) NSString *currentPage;
 @property (nonatomic, strong) NSString *currentPageDesc;

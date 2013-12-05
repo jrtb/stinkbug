@@ -5,8 +5,9 @@
         <title>More Information - Stink Bug App</title>
         <style type="text/css">
             <!--
+            
             .style1 {font-family: Arial, Helvetica, sans-serif}
-            .style2 {font-family: Arial, Helvetica, sans-serif; font-size: large; }
+            .style2 {font-family: Arial, Helvetica, sans-serif; font-size: larger; }
             body,td,th {
                 color: #000000;
             }
@@ -30,16 +31,18 @@
             text-decoration: none;
             color: #FF0000;
         }
-        .style3 {
-            font-size: x-large;
-            font-family: Arial, Helvetica, sans-serif;
+        .style4 {font-family: Arial, Helvetica, sans-serif; font-size: x-large; }
+        
+        @media all and (min-device-width: 481px) and (max-device-width: 1024px) {
+            body { font-size: 200%; }
+            .style4 { font-size: 200%; }
         }
-        -->
-            </style>
+        
+            -->            </style>
     </head>
     
     <body>
-        <div align="center"<span class="style3">More Information</span></div>
+        <div align="center"<span class="style4">More Information</span></div>
         <p class="style1"><a href="AG_730_WPrint-NC.pdf">Decision Aid handout</a></p>
         <p class="style1"><a href="http://ipm.ncsu.edu/cotton/insectcorner/">Link to Cotton Insect Corner</a> (requires internet connection)</p>
     </body>
