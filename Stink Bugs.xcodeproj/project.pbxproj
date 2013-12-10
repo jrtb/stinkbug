@@ -257,6 +257,9 @@
 		E7B3AC8418367B0E00AC6187 /* Intro.html in Resources */ = {isa = PBXBuildFile; fileRef = E7B3AC8318367B0E00AC6187 /* Intro.html */; };
 		E7B3AC861836830800AC6187 /* Threshold.html in Resources */ = {isa = PBXBuildFile; fileRef = E7B3AC851836830800AC6187 /* Threshold.html */; };
 		E7B3AC8818368C9B00AC6187 /* short_whoosh.caf in Resources */ = {isa = PBXBuildFile; fileRef = E7B3AC8718368C9B00AC6187 /* short_whoosh.caf */; };
+		E7CDE7B11857AAF4005FDD2F /* BollSizerIPhone.html in Resources */ = {isa = PBXBuildFile; fileRef = E7CDE7B01857AAF4005FDD2F /* BollSizerIPhone.html */; };
+		E7CDE7B41857AB55005FDD2F /* hole_09_wlabel_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = E7CDE7B21857AB55005FDD2F /* hole_09_wlabel_iphone.png */; };
+		E7CDE7B51857AB55005FDD2F /* hole_11_wlabel_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = E7CDE7B31857AB55005FDD2F /* hole_11_wlabel_iphone.png */; };
 		E7E041A5184E66E400C68589 /* iphoneCalcScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E041A4184E66E400C68589 /* iphoneCalcScene.m */; };
 /* End PBXBuildFile section */
 
@@ -663,6 +666,9 @@
 		E7B3AC8318367B0E00AC6187 /* Intro.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Intro.html; path = content/Intro.html; sourceTree = SOURCE_ROOT; };
 		E7B3AC851836830800AC6187 /* Threshold.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Threshold.html; path = content/Threshold.html; sourceTree = SOURCE_ROOT; };
 		E7B3AC8718368C9B00AC6187 /* short_whoosh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = short_whoosh.caf; path = sounds/short_whoosh.caf; sourceTree = SOURCE_ROOT; };
+		E7CDE7B01857AAF4005FDD2F /* BollSizerIPhone.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = BollSizerIPhone.html; path = content/BollSizerIPhone.html; sourceTree = SOURCE_ROOT; };
+		E7CDE7B21857AB55005FDD2F /* hole_09_wlabel_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hole_09_wlabel_iphone.png; sourceTree = "<group>"; };
+		E7CDE7B31857AB55005FDD2F /* hole_11_wlabel_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hole_11_wlabel_iphone.png; sourceTree = "<group>"; };
 		E7E041A3184E66E400C68589 /* iphoneCalcScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iphoneCalcScene.h; sourceTree = "<group>"; };
 		E7E041A4184E66E400C68589 /* iphoneCalcScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iphoneCalcScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -702,6 +708,8 @@
 		E777E9C5183A9F18004FB5F8 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E7CDE7B21857AB55005FDD2F /* hole_09_wlabel_iphone.png */,
+				E7CDE7B31857AB55005FDD2F /* hole_11_wlabel_iphone.png */,
 				E7B02C96184E312800867DDC /* hole_09_wlabel.png */,
 				E7B02C97184E312800867DDC /* hole_11_wlabel.png */,
 				E7B02C94184E303800867DDC /* hole_09.png */,
@@ -1285,6 +1293,7 @@
 				E7B3AC851836830800AC6187 /* Threshold.html */,
 				E75D73A8183D252F00563E7D /* Card1.html */,
 				E75D73AC183D38BB00563E7D /* BollSizer.html */,
+				E7CDE7B01857AAF4005FDD2F /* BollSizerIPhone.html */,
 				E75D73B0183D51F600563E7D /* Summary.html */,
 				E793168E183E82E70045D9FA /* more.html */,
 				E777E9C5183A9F18004FB5F8 /* images */,
@@ -1379,6 +1388,7 @@
 				E7931680183E6BC90045D9FA /* AppIcon40x40.png in Resources */,
 				E7865C1418341C4F0047A334 /* bottom-menu-14.png in Resources */,
 				E79BB4BF183D14120060182F /* dot-hd.png in Resources */,
+				E7CDE7B41857AB55005FDD2F /* hole_09_wlabel_iphone.png in Resources */,
 				E75D73AD183D38BB00563E7D /* BollSizer.html in Resources */,
 				E7931666183E58F20045D9FA /* camera_button-hd.pvr.gz in Resources */,
 				E7B3AC801836766400AC6187 /* back_button-hd.pvr.gz in Resources */,
@@ -1426,6 +1436,7 @@
 				E7865C4E18341C620047A334 /* Default-Portrait.png in Resources */,
 				E777EA09183A9F18004FB5F8 /* white-on-red-web.gif in Resources */,
 				E7865C4718341C620047A334 /* menu_bg-hd.pvr.gz in Resources */,
+				E7CDE7B51857AB55005FDD2F /* hole_11_wlabel_iphone.png in Resources */,
 				E7931682183E6BC90045D9FA /* AppIcon50x50.png in Resources */,
 				E7865C3618341C620047A334 /* button_01.pvr.gz in Resources */,
 				E777E9E9183A9F18004FB5F8 /* BollWarts9191.JPG in Resources */,
@@ -1441,6 +1452,7 @@
 				E777E9F0183A9F18004FB5F8 /* Card.side1A.jpg in Resources */,
 				E7339F7A183BE7C20075C6F6 /* LintStain.html in Resources */,
 				E7865C4B18341C620047A334 /* ncsu_brick.pvr.gz in Resources */,
+				E7CDE7B11857AAF4005FDD2F /* BollSizerIPhone.html in Resources */,
 				E7865C3818341C620047A334 /* button_02.pvr.gz in Resources */,
 				E7B3AC8818368C9B00AC6187 /* short_whoosh.caf in Resources */,
 				E793167E183E6BC90045D9FA /* AppIcon29x29.png in Resources */,

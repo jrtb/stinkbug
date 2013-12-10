@@ -50,10 +50,12 @@
     mainBack.position = ccp(size.width*.5,size.height);
     [self addChild:mainBack z:2];
     
+    /*
     CCSprite *brick = [CCSprite spriteWithFile:@"ncsu_brick.pvr.gz"];
     brick.anchorPoint = ccp(0.0,1.0);
     brick.position = ccp(0.0,size.height-0.5);
     [self addChild:brick z:2];
+    */
     
     CCSprite *bottom = [CCSprite spriteWithFile:@"bottom_bar.pvr.gz"];
     bottom.anchorPoint = ccp(0.5,0.5);
@@ -86,7 +88,7 @@
     someLabel_e.verticalAlignment = kCCVerticalTextAlignmentCenter;
     [self addChild:someLabel_e z:4];
 
-    task_01Field = [[UITextField alloc] initWithFrame:CGRectMake(startingX+80.0, startingY-260+88-iphoneAddY*2, 40, 40)];
+    task_01Field = [[UITextField alloc] initWithFrame:CGRectMake(startingX+80.0, startingY-260+88-iphoneAddY*2, 60, 40)];
     [task_01Field setBackgroundColor:[UIColor whiteColor]];
     task_01Field.borderStyle = UITextBorderStyleRoundedRect;
     [task_01Field setFont:[UIFont systemFontOfSize:16]];
@@ -99,7 +101,7 @@
     CCUIViewWrapper *viewWrapper = [CCUIViewWrapper wrapperForUIView:task_01Field];
 	[self addChild:viewWrapper z:10];
 
-    task_02Field = [[UITextField alloc] initWithFrame:CGRectMake(startingX+80.0, startingY-210+88-iphoneAddY*2, 40, 40)];
+    task_02Field = [[UITextField alloc] initWithFrame:CGRectMake(startingX+80.0, startingY-210+88-iphoneAddY*2, 60, 40)];
     [task_02Field setBackgroundColor:[UIColor whiteColor]];
     task_02Field.borderStyle = UITextBorderStyleRoundedRect;
     [task_02Field setFont:[UIFont systemFontOfSize:16]];
@@ -112,7 +114,7 @@
     CCUIViewWrapper *viewWrapper_02 = [CCUIViewWrapper wrapperForUIView:task_02Field];
 	[self addChild:viewWrapper_02 z:10];
 
-    task_03Field = [[UITextField alloc] initWithFrame:CGRectMake(startingX+80.0, startingY-160+88-iphoneAddY*2, 40, 40)];
+    task_03Field = [[UITextField alloc] initWithFrame:CGRectMake(startingX+80.0, startingY-160+88-iphoneAddY*2, 60, 40)];
     [task_03Field setBackgroundColor:[UIColor whiteColor]];
     task_03Field.borderStyle = UITextBorderStyleRoundedRect;
     [task_03Field setFont:[UIFont systemFontOfSize:16]];
@@ -208,6 +210,8 @@
         
         // switch treatment_threshold_calculated value
         
+        task_01Field.text = [task_01Field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
         if ([task_01Field.text isEqualToString:@"1"])
             treatment_threshold_calculated.string = @"50%";
         else if ([task_01Field.text isEqualToString:@"2"])
@@ -232,28 +236,36 @@
     }
     
     if (task_02Field == textField) {
-
-        float c = (([task_02Field.text floatValue] / [task_03Field.text floatValue]) * 100.0);
         
-        printf("%f\n",c);
+        task_02Field.text = [task_02Field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
-        your_threshold_calculated.string = [[NSString stringWithFormat:@"%f",c] stringByAppendingString:@"%"];
+        float c = (([task_03Field.text floatValue] / [task_02Field.text floatValue]) * 100.0);
         
-        [task_02Field resignFirstResponder];
-        [task_03Field becomeFirstResponder];
-    }
-
-    if (task_03Field == textField) {
-
-        float c = (([task_02Field.text floatValue] / [task_03Field.text floatValue]) * 100.0);
+        if (c > 100.0) c = 100.0;
         
         printf("%f\n",c);
         
         your_threshold_calculated.string = [[NSString stringWithFormat:@"%.0f",c] stringByAppendingString:@"%"];
+        
+        [task_02Field resignFirstResponder];
+        [task_03Field becomeFirstResponder];
+    }
+    
+    if (task_03Field == textField) {
+        
+        task_03Field.text = [task_03Field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        float c = (([task_03Field.text floatValue] / [task_02Field.text floatValue]) * 100.0);
+        
+        if (c > 100.0) c = 100.0;
 
+        printf("%f\n",c);
+        
+        your_threshold_calculated.string = [[NSString stringWithFormat:@"%.0f",c] stringByAppendingString:@"%"];
+        
         [task_03Field resignFirstResponder];
     }
-
+    
     return YES;
 }
 

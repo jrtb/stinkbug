@@ -47,10 +47,12 @@
     mainBack.position = ccp(size.width*.5,size.height);
     [self addChild:mainBack z:2];
     
+    /*
     CCSprite *brick = [CCSprite spriteWithFile:@"ncsu_brick.pvr.gz"];
     brick.anchorPoint = ccp(0.0,1.0);
     brick.position = ccp(0.0,size.height-0.5);
     [self addChild:brick z:2];
+    */
     
     CCSprite *bottom = [CCSprite spriteWithFile:@"bottom_bar.pvr.gz"];
     bottom.anchorPoint = ccp(0.5,0.5);
@@ -185,7 +187,7 @@
     if ([delegate.currentPage isEqualToString:@"Card1"])
         ((CCSprite*)[dots objectAtIndex:5]).opacity = 255;
 
-    if ([delegate.currentPage isEqualToString:@"BollSizer"])
+    if ([delegate.currentPage isEqualToString:@"BollSizerIPhone"])
         ((CCSprite*)[dots objectAtIndex:6]).opacity = 255;
 
     if ([delegate.currentPage isEqualToString:@"Summary"])
@@ -456,10 +458,10 @@
         
         labelBottom.string = @"STINK BUG BOLL SIZER";
         
-        delegate.currentPage = @"BollSizer";
+        delegate.currentPage = @"BollSizerIPhone";
         delegate.currentPageDesc = labelBottom.string;
         
-    } else if ([delegate.currentPage isEqualToString:@"BollSizer"]) {
+    } else if ([delegate.currentPage isEqualToString:@"BollSizerIPhone"]) {
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
         
@@ -600,7 +602,7 @@
         delegate.currentPage = @"Threshold";
         delegate.currentPageDesc = labelBottom.string;
         
-    } else if ([delegate.currentPage isEqualToString:@"BollSizer"]) {
+    } else if ([delegate.currentPage isEqualToString:@"BollSizerIPhone"]) {
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"short_whoosh.caf"];
         
@@ -631,7 +633,7 @@
         
         labelBottom.string = @"STINK BUG BOLL SIZER";
         
-        delegate.currentPage = @"BollSizer";
+        delegate.currentPage = @"BollSizerIPhone";
         delegate.currentPageDesc = labelBottom.string;
         
     } /* else if ([delegate.currentPage isEqualToString:@"more"]) {

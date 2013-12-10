@@ -206,7 +206,7 @@
                                                                   selector:@selector(cameraAction:)];
         
         CCMenu  *menu_10 = [CCMenu menuWithItems:item_10, nil];
-        [menu_10 setPosition:ccp(39,60)];
+        [menu_10 setPosition:ccp(39*2,60*2)];
         [self addChild:menu_10 z:2];
         
     }

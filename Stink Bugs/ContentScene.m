@@ -47,10 +47,12 @@
     mainBack.position = ccp(size.width*.5,size.height);
     [self addChild:mainBack z:2];
     
+    /*
     CCSprite *brick = [CCSprite spriteWithFile:@"ncsu_brick-hd.pvr.gz"];
     brick.anchorPoint = ccp(0.0,1.0);
     brick.position = ccp(0.0,size.height-0.5);
     [self addChild:brick z:2];
+    */
     
     CCSprite *bottom = [CCSprite spriteWithFile:@"bottom_bar-hd.pvr.gz"];
     bottom.anchorPoint = ccp(0.5,0.5);
