@@ -146,7 +146,7 @@
     someLabel_04.verticalAlignment = kCCVerticalTextAlignmentCenter;
     [self addChild:someLabel_04 z:4];
     
-    CCLabelTTF *someLabel_05 = [CCLabelTTF labelWithString:@"Your threshold" fontName:@"Helvetica" fontSize:16*2 dimensions:CGSizeMake(140.0*2, 80.0*2) hAlignment:kCCTextAlignmentLeft];
+    CCLabelTTF *someLabel_05 = [CCLabelTTF labelWithString:@"Your damage" fontName:@"Helvetica" fontSize:16*2 dimensions:CGSizeMake(140.0*2, 80.0*2) hAlignment:kCCTextAlignmentLeft];
     someLabel_05.position = ccp(startingX, startingY+70/480.0*1024.0-200*2);
     someLabel_05.color = ccc3FromUInt(0x000000);
     someLabel_05.verticalAlignment = kCCVerticalTextAlignmentCenter;
@@ -182,10 +182,54 @@
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([text isEqualToString:@"\n"]) {
 		[textView resignFirstResponder];
+        
+        task_01Field.text = [task_01Field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        if ([task_01Field.text isEqualToString:@"1"])
+            treatment_threshold_calculated.string = @"50%";
+        else if ([task_01Field.text isEqualToString:@"2"])
+            treatment_threshold_calculated.string = @"30%";
+        else if ([task_01Field.text isEqualToString:@"3"])
+            treatment_threshold_calculated.string = @"10%";
+        else if ([task_01Field.text isEqualToString:@"4"])
+            treatment_threshold_calculated.string = @"10%";
+        else if ([task_01Field.text isEqualToString:@"5"])
+            treatment_threshold_calculated.string = @"10%";
+        else if ([task_01Field.text isEqualToString:@"6"])
+            treatment_threshold_calculated.string = @"20%";
+        else if ([task_01Field.text isEqualToString:@"7"])
+            treatment_threshold_calculated.string = @"30%";
+        else if ([task_01Field.text isEqualToString:@"8"])
+            treatment_threshold_calculated.string = @"50%";
+        else
+            treatment_threshold_calculated.string = @"--";
+
 		return NO;
         //} else if ([[textView text] length] + [text length] - range.length > 140) {
         //    return NO;
 	} else {
+        
+        task_01Field.text = [task_01Field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        if ([task_01Field.text isEqualToString:@"1"])
+            treatment_threshold_calculated.string = @"50%";
+        else if ([task_01Field.text isEqualToString:@"2"])
+            treatment_threshold_calculated.string = @"30%";
+        else if ([task_01Field.text isEqualToString:@"3"])
+            treatment_threshold_calculated.string = @"10%";
+        else if ([task_01Field.text isEqualToString:@"4"])
+            treatment_threshold_calculated.string = @"10%";
+        else if ([task_01Field.text isEqualToString:@"5"])
+            treatment_threshold_calculated.string = @"10%";
+        else if ([task_01Field.text isEqualToString:@"6"])
+            treatment_threshold_calculated.string = @"20%";
+        else if ([task_01Field.text isEqualToString:@"7"])
+            treatment_threshold_calculated.string = @"30%";
+        else if ([task_01Field.text isEqualToString:@"8"])
+            treatment_threshold_calculated.string = @"50%";
+        else
+            treatment_threshold_calculated.string = @"--";
+
 		return YES;
 	}
 }
@@ -195,6 +239,27 @@
 {
     printf("textFieldDidEndEditing\n");
     
+    task_01Field.text = [task_01Field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([task_01Field.text isEqualToString:@"1"])
+        treatment_threshold_calculated.string = @"50%";
+    else if ([task_01Field.text isEqualToString:@"2"])
+        treatment_threshold_calculated.string = @"30%";
+    else if ([task_01Field.text isEqualToString:@"3"])
+        treatment_threshold_calculated.string = @"10%";
+    else if ([task_01Field.text isEqualToString:@"4"])
+        treatment_threshold_calculated.string = @"10%";
+    else if ([task_01Field.text isEqualToString:@"5"])
+        treatment_threshold_calculated.string = @"10%";
+    else if ([task_01Field.text isEqualToString:@"6"])
+        treatment_threshold_calculated.string = @"20%";
+    else if ([task_01Field.text isEqualToString:@"7"])
+        treatment_threshold_calculated.string = @"30%";
+    else if ([task_01Field.text isEqualToString:@"8"])
+        treatment_threshold_calculated.string = @"50%";
+    else
+        treatment_threshold_calculated.string = @"--";
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
