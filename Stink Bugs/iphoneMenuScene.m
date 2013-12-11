@@ -237,54 +237,58 @@
         
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
         [[CCDirector sharedDirector] presentViewController:picker animated:YES completion:nil];
         
     }
 }
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    image = info[UIImagePickerControllerEditedImage];
-    
     //self.imageView.image = chosenImage;
+    //image = info[UIImagePickerControllerEditedImage];
+    image = info[UIImagePickerControllerOriginalImage];
     
-    [self showEmailModalView];
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+        [self showEmail];
+        
+    }];
     
 }
 
--(void) showEmailModalView
-{
+- (void) showEmail {
     
-	MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-	picker.mailComposeDelegate = self; // very important step if you want feedbacks on what the user did with your email sheet
-	picker.wantsFullScreenLayout = YES;
-	
-    //[picker setToRecipients:[NSArray arrayWithObject:@""]];
+    MFMailComposeViewController *picker2 = [[MFMailComposeViewController alloc] init];
+    picker2.mailComposeDelegate = self; // very important step if you want feedbacks on what the user did with your email sheet
+    //picker2.wantsFullScreenLayout = YES;
     
-	NSString *emailBody = [NSString stringWithFormat:@""];
+    //[picker2 setToRecipients:[NSArray arrayWithObject:@""]];
     
-	NSString *title = [NSString stringWithFormat:@"Stink Bug App picture email submission"];
+    //NSString *emailBody = [NSString stringWithFormat:@""];
     
-	[picker setSubject:title];
+    NSString *title = [NSString stringWithFormat:@"Stink Bug App picture email submission"];
     
-    [picker addAttachmentData:UIImageJPEGRepresentation(image, 1) mimeType:@"image/jpeg" fileName:@"MyFile.jpeg"];
+    [picker2 setSubject:title];
     
-	[picker setMessageBody:emailBody isHTML:YES]; // depends. Mostly YES, unless you want to send it as plain text (boring)
-	
-	picker.navigationBar.barStyle = UIBarStyleDefault; // choose your style, unfortunately, Translucent colors behave quirky.
-	
-	[[CCDirector sharedDirector] presentViewController:picker animated:YES completion:nil];
+    [picker2 addAttachmentData:UIImageJPEGRepresentation(image, 1) mimeType:@"image/jpeg" fileName:@"MyFile.jpeg"];
     
+    //[picker2 setMessageBody:emailBody isHTML:YES]; // depends. Mostly YES, unless you want to send it as plain text (boring)
+    
+    picker2.navigationBar.barStyle = UIBarStyleDefault; // choose your style, unfortunately, Translucent colors behave quirky.
+    
+    [[CCDirector sharedDirector] presentViewController:picker2 animated:YES completion:nil];
+
 }
 
 // Dismisses the email composition interface when users tap Cancel or Send. Proceeds to update the message field with the result of the operation.
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
+    printf("mail controller dismissed\n");
+    
 	// Notifies users about errors associated with the interface
 	switch (result)
 	{
@@ -308,8 +312,10 @@
 			break;
 	}
     
+    //controller.delegate = nil;
+    
 	// Dismiss UIImagePickerController and release it
-	[controller dismissModalViewControllerAnimated:NO];
+    [controller dismissViewControllerAnimated:NO completion:NULL];
 	[controller.view removeFromSuperview];
     
 }
