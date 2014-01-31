@@ -244,6 +244,9 @@
 		E793168D183E6BC90045D9FA /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E793167D183E6BC90045D9FA /* iTunesArtwork@2x.png */; };
 		E793168F183E82E70045D9FA /* more.html in Resources */ = {isa = PBXBuildFile; fileRef = E793168E183E82E70045D9FA /* more.html */; };
 		E7931691183E832A0045D9FA /* AG_730_WPrint-NC.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E7931690183E832A0045D9FA /* AG_730_WPrint-NC.pdf */; };
+		E79B833A189BF38D00BDECFC /* nezara_late_nymph_final2SM.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E79B8338189BF38D00BDECFC /* nezara_late_nymph_final2SM.jpg */; };
+		E79B833B189BF38D00BDECFC /* nezara_adult_final2SM.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E79B8339189BF38D00BDECFC /* nezara_adult_final2SM.jpg */; };
+		E79B833D189BF3AC00BDECFC /* SouthernGSB.html in Resources */ = {isa = PBXBuildFile; fileRef = E79B833C189BF3AC00BDECFC /* SouthernGSB.html */; };
 		E79BB4BF183D14120060182F /* dot-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = E79BB4BD183D14120060182F /* dot-hd.png */; };
 		E79BB4C0183D14120060182F /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = E79BB4BE183D14120060182F /* dot.png */; };
 		E7B02C93184E2B8F00867DDC /* hole_11.png in Resources */ = {isa = PBXBuildFile; fileRef = E7B02C92184E2B8F00867DDC /* hole_11.png */; };
@@ -651,6 +654,9 @@
 		E793167D183E6BC90045D9FA /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "Resources/iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		E793168E183E82E70045D9FA /* more.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = more.html; path = content/more.html; sourceTree = SOURCE_ROOT; };
 		E7931690183E832A0045D9FA /* AG_730_WPrint-NC.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "AG_730_WPrint-NC.pdf"; path = "content/AG_730_WPrint-NC.pdf"; sourceTree = SOURCE_ROOT; };
+		E79B8338189BF38D00BDECFC /* nezara_late_nymph_final2SM.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nezara_late_nymph_final2SM.jpg; sourceTree = "<group>"; };
+		E79B8339189BF38D00BDECFC /* nezara_adult_final2SM.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nezara_adult_final2SM.jpg; sourceTree = "<group>"; };
+		E79B833C189BF3AC00BDECFC /* SouthernGSB.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = SouthernGSB.html; path = content/SouthernGSB.html; sourceTree = SOURCE_ROOT; };
 		E79BB4BD183D14120060182F /* dot-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dot-hd.png"; path = "images/dot-hd.png"; sourceTree = SOURCE_ROOT; };
 		E79BB4BE183D14120060182F /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dot.png; path = images/dot.png; sourceTree = SOURCE_ROOT; };
 		E7B02C92184E2B8F00867DDC /* hole_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hole_11.png; sourceTree = "<group>"; };
@@ -708,6 +714,8 @@
 		E777E9C5183A9F18004FB5F8 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E79B8338189BF38D00BDECFC /* nezara_late_nymph_final2SM.jpg */,
+				E79B8339189BF38D00BDECFC /* nezara_adult_final2SM.jpg */,
 				E7CDE7B21857AB55005FDD2F /* hole_09_wlabel_iphone.png */,
 				E7CDE7B31857AB55005FDD2F /* hole_11_wlabel_iphone.png */,
 				E7B02C96184E312800867DDC /* hole_09_wlabel.png */,
@@ -1282,6 +1290,7 @@
 				E781773A183A9C1B00918B1E /* Photos.html */,
 				E777E9C3183A9EAF004FB5F8 /* GreenSB.html */,
 				E777EA0A183AA4F2004FB5F8 /* BrownSB.html */,
+				E79B833C189BF3AC00BDECFC /* SouthernGSB.html */,
 				E777EA0B183AA4F2004FB5F8 /* KudzuSB.html */,
 				E777EA0C183AA4F2004FB5F8 /* MarmoratedSB.html */,
 				E7339F73183BD2080075C6F6 /* DamageSymptoms.html */,
@@ -1329,6 +1338,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "NC State University";
+				TargetAttributes = {
+					E786589118341A260047A334 = {
+						DevelopmentTeam = 3H6GLPJ48J;
+					};
+				};
 			};
 			buildConfigurationList = E786588D18341A260047A334 /* Build configuration list for PBXProject "Stink Bugs" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1365,6 +1379,7 @@
 				E793168C183E6BC90045D9FA /* iTunesArtwork.png in Resources */,
 				E7931689183E6BC90045D9FA /* AppIcon72x72@2x.png in Resources */,
 				E7339F7C183BE7C20075C6F6 /* BollWarts.html in Resources */,
+				E79B833B189BF38D00BDECFC /* nezara_adult_final2SM.jpg in Resources */,
 				E777E9EB183A9F18004FB5F8 /* brown.marmorated.stink.bug.5.MER.jpg in Resources */,
 				E7865C4018341C620047A334 /* button_06.pvr.gz in Resources */,
 				E7931668183E58F20045D9FA /* camera_button.pvr.gz in Resources */,
@@ -1390,6 +1405,7 @@
 				E79BB4BF183D14120060182F /* dot-hd.png in Resources */,
 				E7CDE7B41857AB55005FDD2F /* hole_09_wlabel_iphone.png in Resources */,
 				E75D73AD183D38BB00563E7D /* BollSizer.html in Resources */,
+				E79B833D189BF3AC00BDECFC /* SouthernGSB.html in Resources */,
 				E7931666183E58F20045D9FA /* camera_button-hd.pvr.gz in Resources */,
 				E7B3AC801836766400AC6187 /* back_button-hd.pvr.gz in Resources */,
 				E7931683183E6BC90045D9FA /* AppIcon50x50@2x.png in Resources */,
@@ -1459,6 +1475,7 @@
 				E777E9FC183A9F18004FB5F8 /* hole.jpg in Resources */,
 				E7339F7B183BE7C20075C6F6 /* HardLock.html in Resources */,
 				E7865C3418341C620047A334 /* bottom_bar.pvr.gz in Resources */,
+				E79B833A189BF38D00BDECFC /* nezara_late_nymph_final2SM.jpg in Resources */,
 				E7865C4D18341C620047A334 /* Default-568h@2x.png in Resources */,
 				E7B3AC811836766400AC6187 /* back_button.pvr.gz in Resources */,
 				E777E9F3183A9F18004FB5F8 /* circle.jpg in Resources */,
@@ -1627,7 +1644,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "2939115A-7492-4182-87C5-069687C22B46";
+				PROVISIONING_PROFILE = "B1DB386D-6951-4119-A639-EF448AECEE10";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1647,7 +1664,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "2939115A-7492-4182-87C5-069687C22B46";
+				PROVISIONING_PROFILE = "B1DB386D-6951-4119-A639-EF448AECEE10";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1658,6 +1675,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1671,7 +1690,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "B1DB386D-6951-4119-A639-EF448AECEE10";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1682,6 +1701,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stink Bugs/Prefix.pch";
@@ -1694,7 +1715,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "B1DB386D-6951-4119-A639-EF448AECEE10";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -1705,7 +1726,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Fairlady Media, Inc. (3H6GLPJ48J)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -1715,7 +1736,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "2939115A-7492-4182-87C5-069687C22B46";
+				PROVISIONING_PROFILE = "B1DB386D-6951-4119-A639-EF448AECEE10";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1726,6 +1747,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Fairlady Media, Inc. (3H6GLPJ48J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stink Bugs/Prefix.pch";
@@ -1738,7 +1761,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2939115A-7492-4182-87C5-069687C22B46";
+				PROVISIONING_PROFILE = "B1DB386D-6951-4119-A639-EF448AECEE10";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

@@ -167,6 +167,7 @@
     if ([delegate.currentPage isEqualToString:@"Photos"] ||
         [delegate.currentPage isEqualToString:@"GreenSB"] ||
         [delegate.currentPage isEqualToString:@"BrownSB"] ||
+        [delegate.currentPage isEqualToString:@"SouthernGSB"] ||
         [delegate.currentPage isEqualToString:@"KudzuSB"] ||
         [delegate.currentPage isEqualToString:@"MarmoratedSB"])
         ((CCSprite*)[dots objectAtIndex:1]).opacity = 255;
@@ -256,7 +257,18 @@
                 delegate.currentPageDesc = labelBottom.string;
                 
             }
-            
+ 
+            if ([[request.URL lastPathComponent] isEqualToString:@"SouthernGSB.html"]) {
+                
+                labelBottom.string = @"SOUTHERN GREEN STINK BUG";
+                
+                AppController *delegate  = (AppController*) [[UIApplication sharedApplication] delegate];
+                
+                delegate.currentPage = @"SouthernGSB";
+                delegate.currentPageDesc = labelBottom.string;
+                
+            }
+
             if ([[request.URL lastPathComponent] isEqualToString:@"KudzuSB.html"]) {
                 
                 labelBottom.string = @"KUDZU BUG";
@@ -371,6 +383,7 @@
     } else if ([delegate.currentPage isEqualToString:@"Photos"] ||
                [delegate.currentPage isEqualToString:@"GreenSB"] ||
                [delegate.currentPage isEqualToString:@"BrownSB"] ||
+               [delegate.currentPage isEqualToString:@"SouthernGSB"] ||
                [delegate.currentPage isEqualToString:@"KudzuSB"] ||
                [delegate.currentPage isEqualToString:@"MarmoratedSB"]) {
 
@@ -529,6 +542,7 @@
     } else if ([delegate.currentPage isEqualToString:@"DamageSymptoms"] ||
                [delegate.currentPage isEqualToString:@"GreenSB"] ||
                [delegate.currentPage isEqualToString:@"BrownSB"] ||
+               [delegate.currentPage isEqualToString:@"SouthernGSB"] ||
                [delegate.currentPage isEqualToString:@"KudzuSB"] ||
                [delegate.currentPage isEqualToString:@"MarmoratedSB"]) {
         
