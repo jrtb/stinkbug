@@ -317,10 +317,13 @@ static BOOL configured = FALSE;
 }
 
 -(BOOL) isOtherAudioPlaying {
+    return [[AVAudioSession sharedInstance] isOtherAudioPlaying];
+    /*
 	UInt32 isPlaying = 0;
 	UInt32 varSize = sizeof(isPlaying);
 	AudioSessionGetProperty (kAudioSessionProperty_OtherAudioIsPlaying, &varSize, &isPlaying);
 	return (isPlaying != 0);
+     */
 }
 
 -(void) setMode:(tAudioManagerMode) mode {
@@ -398,9 +401,11 @@ static BOOL configured = FALSE;
 	if ((self = [super init])) {
 
 		//Initialise the audio session
-		AVAudioSession* session = [AVAudioSession sharedInstance];
-		session.delegate = self;
-
+		//AVAudioSession* session = [AVAudioSession sharedInstance];
+		//session.delegate = self;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruption:) name:AVAudioSessionInterruptionNotification object:nil];
+        
 		_mode = mode;
 		backgroundMusicCompletionSelector = nil;
 		_isObservingAppEvents = FALSE;
@@ -431,6 +436,19 @@ static BOOL configured = FALSE;
 
 	}
 	return self;
+}
+
+- (void) interruption:(NSNotification*)notification
+{
+    NSDictionary *interuptionDict = notification.userInfo;
+    
+    NSUInteger interuptionType = (NSUInteger)[interuptionDict valueForKey:AVAudioSessionInterruptionTypeKey];
+    
+    if (interuptionType == AVAudioSessionInterruptionTypeBegan)
+        [self beginInterruption];
+    
+    else if (interuptionType == AVAudioSessionInterruptionTypeEnded)
+        [self endInterruption];
 }
 
 -(void) dealloc {

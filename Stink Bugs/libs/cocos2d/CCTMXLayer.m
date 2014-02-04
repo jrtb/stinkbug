@@ -102,7 +102,7 @@ int compareInts (const void * a, const void * b);
 		_minGID = layerInfo.minGID;
 		_maxGID = layerInfo.maxGID;
 		_opacity = layerInfo.opacity;
-		self.properties = [NSMutableDictionary dictionaryWithDictionary:layerInfo.properties];
+		//self.properties = [NSMutableDictionary dictionaryWithDictionary:layerInfo.properties];
 
 		// tilesetInfo
 		self.tileset = tilesetInfo;
