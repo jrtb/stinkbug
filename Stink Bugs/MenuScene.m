@@ -256,25 +256,34 @@
 
 - (void) showEmail {
     
-    MFMailComposeViewController *picker2 = [[MFMailComposeViewController alloc] init];
-    picker2.mailComposeDelegate = self; // very important step if you want feedbacks on what the user did with your email sheet
-    //picker2.wantsFullScreenLayout = YES;
-    
-    //[picker2 setToRecipients:[NSArray arrayWithObject:@""]];
-    
-    //NSString *emailBody = [NSString stringWithFormat:@""];
-    
-    NSString *title = [NSString stringWithFormat:@"Stink Bug App picture email submission"];
-    
-    [picker2 setSubject:title];
-    
-    [picker2 addAttachmentData:UIImageJPEGRepresentation(image, 1) mimeType:@"image/jpeg" fileName:@"MyFile.jpeg"];
-    
-    //[picker2 setMessageBody:emailBody isHTML:YES]; // depends. Mostly YES, unless you want to send it as plain text (boring)
-    
-    picker2.navigationBar.barStyle = UIBarStyleDefault; // choose your style, unfortunately, Translucent colors behave quirky.
-    
-    [[CCDirector sharedDirector] presentViewController:picker2 animated:YES completion:nil];
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+    if (mailClass != nil) {
+        
+        MFMailComposeViewController *picker2 = [[MFMailComposeViewController alloc] init];
+        picker2.mailComposeDelegate = self; // very important step if you want feedbacks on what the user did with your email sheet
+        //picker2.wantsFullScreenLayout = YES;
+        
+        //[picker2 setToRecipients:[NSArray arrayWithObject:@""]];
+        
+        //NSString *emailBody = [NSString stringWithFormat:@""];
+        
+        NSString *title = [NSString stringWithFormat:@"Stink Bug App picture email submission"];
+        
+        [picker2 setSubject:title];
+        
+        [picker2 addAttachmentData:UIImageJPEGRepresentation(image, 1) mimeType:@"image/jpeg" fileName:@"MyFile.jpeg"];
+        
+        //[picker2 setMessageBody:emailBody isHTML:YES]; // depends. Mostly YES, unless you want to send it as plain text (boring)
+        
+        picker2.navigationBar.barStyle = UIBarStyleDefault; // choose your style, unfortunately, Translucent colors behave quirky.
+        
+        [[CCDirector sharedDirector] presentViewController:picker2 animated:YES completion:nil];
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email" message:@"Error - this device is not currently setup to use email."
+                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
     
 }
 
