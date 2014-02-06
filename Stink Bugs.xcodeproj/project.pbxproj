@@ -1643,7 +1643,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PROVISIONING_PROFILE = "B1DB386D-6951-4119-A639-EF448AECEE10";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1663,7 +1663,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PROVISIONING_PROFILE = "B1DB386D-6951-4119-A639-EF448AECEE10";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1683,7 +1683,7 @@
 				GCC_PREFIX_HEADER = "Stink Bugs/Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Stink Bugs/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Stink Bugs/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -1708,7 +1708,7 @@
 				GCC_PREFIX_HEADER = "Stink Bugs/Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Stink Bugs/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Stink Bugs/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -1735,7 +1735,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PROVISIONING_PROFILE = "B1DB386D-6951-4119-A639-EF448AECEE10";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1754,7 +1754,7 @@
 				GCC_PREFIX_HEADER = "Stink Bugs/Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Stink Bugs/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Stink Bugs/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
