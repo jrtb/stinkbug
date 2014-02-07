@@ -277,7 +277,7 @@
         
         picker2.navigationBar.barStyle = UIBarStyleDefault; // choose your style, unfortunately, Translucent colors behave quirky.
         
-        if (picker2 && picker2 != nil) {
+        if (picker2 != nil) {
             [[CCDirector sharedDirector] presentViewController:picker2 animated:YES completion:nil];
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email" message:@"Error - this device is not currently setup to use email."
